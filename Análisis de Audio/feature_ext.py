@@ -2,6 +2,9 @@ import librosa
 import librosa.display
 import numpy as np
 import matplotlib.pyplot as plt
+import xml.etree.cElementTree as ET
+#import eyed3
+
 
 filename = "Notion.mp3"
 
@@ -10,7 +13,7 @@ y, sr = librosa.load(filename)
 onset_env = librosa.onset.onset_strength(y, sr=sr)
 
 #Promedio de Tempo
-tempo = librosa.beat.tempo(onset_envelope=onset_env, sr=sr)[0]
+tempo =librosa.beat.tempo(onset_envelope=onset_env, sr=sr)[0]
 print(tempo)
 
 #Témpo Dinámico
@@ -73,3 +76,22 @@ plt.xticks([])
 plt.legend(frameon=True)
 plt.axis('tight')
 plt.show()
+
+
+def to_XML():
+    
+    root = ET.Element("root")
+
+    root = ET.Element("cancion")
+    #ET.SubElement(root, "nombre").text = "nombre"
+    ET.SubElement(root, "ruta").text = filename
+    ET.SubElement(root, "tempoM").text = str(tempo)
+    ET.SubElement(root, "tempoD").text = str(dtempo)
+    ET.SubElement(root, "chromaCQ").text = str(chroma_cq)
+    ET.SubElement(root, "energy").text = str(rms.T)
+    ET.SubElement(root, "tempograma").text = str(tempogram)
+
+    tree = ET.ElementTree(root)
+    tree.write("actual.xml")
+    
+to_XML()
