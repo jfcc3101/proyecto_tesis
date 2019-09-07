@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Player_right1.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player_right.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player_left1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player_left.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player_left1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player_left.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player_right1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player_right.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Player0.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player1.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/fondo1.png" type="Texture" id=8]
@@ -13,12 +13,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
@@ -66,6 +66,7 @@ current = true
 zoom = Vector2( 0.7, 0.7 )
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
+smoothing_enabled = true
 __meta__ = {
 "_edit_group_": true
 }

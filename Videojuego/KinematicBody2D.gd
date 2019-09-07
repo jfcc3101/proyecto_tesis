@@ -6,18 +6,19 @@ const VELOCIDAD_MAX  = 300
 var mov = Vector2()
 
 func _physics_process(delta):
-	
+	mov.y = -120
 	if Input.is_action_pressed("ui_right"):
 		mov.x = min(mov.x+ACELERACION,VELOCIDAD_MAX)
 		$AnimatedSprite.play("right")
-		#$AnimatedSprite.self_modulate = Color(0.2,0.3,0.1)
+		$AnimatedSprite.self_modulate = Color(0.2,0.3,0.1)
 	elif Input.is_action_pressed("ui_left"):
 		mov.x = max(mov.x-ACELERACION,-VELOCIDAD_MAX)
 		$AnimatedSprite.play("left")
 	elif Input.is_action_pressed("ui_up"):
-		mov.y = max(mov.y-ACELERACION,-VELOCIDAD_MAX)
+		pass
 	elif Input.is_action_pressed("ui_down"):
-		mov.y = min(mov.y+ACELERACION,VELOCIDAD_MAX)
+		pass
+		#mov.y = min(mov.y+ACELERACION,VELOCIDAD_MAX)
 	else:
 		$AnimatedSprite.play("normal")
 		

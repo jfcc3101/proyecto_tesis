@@ -6,7 +6,7 @@ import xml.etree.cElementTree as ET
 #import eyed3
 
 
-filename = "Notion.mp3"
+filename = "First date.mp3"
 
 #Carga de archivo
 y, sr = librosa.load(filename)
@@ -86,10 +86,42 @@ def to_XML():
     #ET.SubElement(root, "nombre").text = "nombre"
     ET.SubElement(root, "ruta").text = filename
     ET.SubElement(root, "tempoM").text = str(tempo)
-    ET.SubElement(root, "tempoD").text = str(dtempo)
-    ET.SubElement(root, "chromaCQ").text = str(chroma_cq)
-    ET.SubElement(root, "energy").text = str(rms.T)
-    ET.SubElement(root, "tempograma").text = str(tempogram)
+    
+    strdtempo =' '.join(str(e) for e in dtempo)
+    strdtempo = '[' + strdtempo + ']'
+    
+    ET.SubElement(root, "tempoD").text = strdtempo
+    chroma = ET.SubElement(root, "chromaCQ")
+    strchB = "[" + ' '.join(str(i) for i in chroma_cq[0]) + "]"
+    ET.SubElement(chroma, "B").text = strchB
+    strchAsus = "[" + ' '.join(str(i) for i in chroma_cq[1]) + "]"
+    ET.SubElement(chroma, "A#").text = strchAsus
+    strchA = "[" + ' '.join(str(i) for i in chroma_cq[2]) + "]"
+    ET.SubElement(chroma, "A").text = strchA
+    strchGsus = "[" + ' '.join(str(i) for i in chroma_cq[3]) + "]"
+    ET.SubElement(chroma, "G#").text = strchGsus
+    strchG = "[" + ' '.join(str(i) for i in chroma_cq[4]) + "]"
+    ET.SubElement(chroma, "G").text = strchG
+    strchFsus = "[" + ' '.join(str(i) for i in chroma_cq[5]) + "]"
+    ET.SubElement(chroma, "F#").text = strchFsus
+    strchF = "[" + ' '.join(str(i) for i in chroma_cq[6]) + "]"
+    ET.SubElement(chroma, "F").text = strchF
+    strchE = "[" + ' '.join(str(i) for i in chroma_cq[7]) + "]"
+    ET.SubElement(chroma, "E").text = strchE
+    strchDsus = "[" + ' '.join(str(i) for i in chroma_cq[8]) + "]"
+    ET.SubElement(chroma, "D#").text = strchDsus
+    strchD = "[" + ' '.join(str(i) for i in chroma_cq[9]) + "]"
+    ET.SubElement(chroma, "D").text = strchD
+    strchCsus = "[" + ' '.join(str(i) for i in chroma_cq[10]) + "]"
+    ET.SubElement(chroma, "C#").text = strchCsus
+    strchC = "[" + ' '.join(str(i) for i in chroma_cq[11]) + "]"
+    ET.SubElement(chroma, "C").text = strchC
+    
+    strEnergy = ' '.join(str(i) for i in rms.T)
+    strEnergy = "[" + strEnergy + "]"
+    ET.SubElement(root, "energy").text = strEnergy
+    
+    #ET.SubElement(root, "tempograma").text = str(*tempogram)
 
     tree = ET.ElementTree(root)
     tree.write("actual.xml")
