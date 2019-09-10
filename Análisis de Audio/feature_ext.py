@@ -77,6 +77,12 @@ plt.legend(frameon=True)
 plt.axis('tight')
 plt.show()
 
+"""
+Pintado de onda
+plt.figure()
+librosa.display.waveplot(y, sr=sr)
+plt.title('wave')
+"""
 
 def to_XML():
     
