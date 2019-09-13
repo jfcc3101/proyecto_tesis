@@ -5,7 +5,11 @@ const ACELERACION = 15
 const VELOCIDAD_MAX  = 300
 var mov = Vector2()
 
+func _ready():
+	pass
+
 func _physics_process(delta):
+	var spawner = get_node("/root/Mundo/EnemySpawner")
 	mov.y = -110
 	if Input.is_action_pressed("ui_right"):
 		mov.x = min(mov.x+ACELERACION,VELOCIDAD_MAX)
@@ -15,7 +19,8 @@ func _physics_process(delta):
 		mov.x = max(mov.x-ACELERACION,-VELOCIDAD_MAX)
 		$AnimatedSprite.play("left")
 	elif Input.is_action_pressed("ui_up"):
-		pass
+		spawner.spawnCassette()
+		#pass
 	elif Input.is_action_pressed("ui_down"):
 		pass
 		#mov.y = min(mov.y+ACELERACION,VELOCIDAD_MAX)

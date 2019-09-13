@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://EnemyCassette.gd" type="Script" id=1]
+[ext_resource path="res://Enemy_Cassette.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Enemy01.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Enemy01_02.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Enemy01_dead.png" type="Texture" id=4]
@@ -20,16 +20,12 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[node name="EnemyCassette" type="KinematicBody2D"]
+[node name="Enemy_Cassette" type="Area2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-mov = Vector2( 0, 100 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+animation = "dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
