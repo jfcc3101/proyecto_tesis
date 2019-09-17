@@ -10,7 +10,7 @@ var posJugador = Vector2()
 func _ready():
 	#print(get_path())
 	
-	var posCamara = get_node("/root/Mundo/Jugador/Camera2D").get_camera_position()
+	#var posCamara = get_node("/root/Mundo/Jugador/Camera2D").get_camera_position()
 	randomize()
 	var enemigo = rand_range(0,3)
 	if enemigo <= 1:

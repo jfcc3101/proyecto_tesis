@@ -51,7 +51,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "right"
+animation = "normal"
 __meta__ = {
 "_edit_group_": true
 }
@@ -98,3 +98,9 @@ lifetime = 0.65
 draw_order = 1
 process_material = SubResource( 4 )
 texture = ExtResource( 9 )
+
+[node name="Canones" type="Node2D" parent="."]
+
+[node name="izq" type="Position2D" parent="Canones"]
+
+[node name="der" type="Position2D" parent="Canones"]
