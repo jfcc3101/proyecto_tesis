@@ -28,7 +28,15 @@ func _physics_process(delta):
 		crear_laser(pos_der)
 		#spawner.spawnCassette()
 		pass
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_just_pressed("ui_down"):
+		randomize()
+		var enemigo = rand_range(0,3)
+		if enemigo <= 1:
+			spawner.spawnCassette()
+		elif enemigo <= 2:
+			spawner.spawnDisc()
+		else:
+			spawner.spawnMPlayer()
 		pass
 		#mov.y = min(mov.y+ACELERACION,VELOCIDAD_MAX)
 	else:
