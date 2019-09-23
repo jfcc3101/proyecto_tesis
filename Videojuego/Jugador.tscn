@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Player_left1.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player_left.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player_right1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player_right.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player_right1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player_right.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player_left1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player_left.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Player0.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player1.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/fondo1.png" type="Texture" id=8]
@@ -14,12 +14,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
@@ -39,6 +39,7 @@ emission_sphere_radius = 3.0
 flag_disable_z = true
 gravity = Vector3( 0, 98, 0 )
 initial_velocity_random = 1.0
+angular_velocity = 1.05
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale_random = 1.0
@@ -52,34 +53,25 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "normal"
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 scale = Vector2( 0.85, 0.38 )
 shape = SubResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 shape = SubResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -150 )
 current = true
 zoom = Vector2( 0.7, 0.7 )
+limit_left = -359
+limit_right = 359
+limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

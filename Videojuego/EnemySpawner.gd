@@ -3,8 +3,8 @@ extends Node
 const enemyCassette = preload("res://EnemyCassette.tscn")
 const enemyDisc = preload("res://EnemyDisc.tscn")
 const enemyPlayer = preload("res://EnemyPlayer.tscn")
-var posCamara = Vector2()
-var posJugador = Vector2()
+#var posCamara = Vector2()
+#var posJugador = Vector2()
 
 
 func _ready():
@@ -19,8 +19,6 @@ func _ready():
 		spawnDisc()
 	else:
 		spawnMPlayer()
-	
-
 	
 func spawnCassette():
 	var posJugador = get_node("/root/Mundo/Jugador").position

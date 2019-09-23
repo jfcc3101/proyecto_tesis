@@ -11,3 +11,7 @@
 script = ExtResource( 2 )
 
 [node name="Container" type="Node" parent="EnemySpawner"]
+
+[node name="ParedDerecha" type="Node" parent="."]
+
+[node name="ParedIzquierda" type="Node" parent="."]
