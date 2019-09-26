@@ -21,11 +21,8 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=2]
 
-[node name="EnemyDisc" type="KinematicBody2D"]
+[node name="EnemyDisc" type="Area2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 mov = Vector2( 0, 100 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

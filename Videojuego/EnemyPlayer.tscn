@@ -15,11 +15,8 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[node name="EnemyPlayer" type="KinematicBody2D"]
+[node name="EnemyPlayer" type="Area2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 mov = Vector2( 0, 100 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

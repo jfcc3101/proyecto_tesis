@@ -5,6 +5,7 @@ const esc_flare = preload("res://Flare.tscn")
 
 
 func _ready():
+	connect("area_entered",self,"on_area_enter")
 	set_process(true)
 	crear_flare()
 	yield(get_node("VisibilityNotifier2D"),"screen_exited")
@@ -19,3 +20,9 @@ func crear_flare():
 	flare.set_position(get_position())
 	#get_parent().add_child((flare)
 	get_node("/root").add_child(flare)
+	
+func on_area_enter(otro):
+	if otro.is_in_group("enemigos"):
+		otro.escudo -= 1
+		crear_flare()
+		queue_free()

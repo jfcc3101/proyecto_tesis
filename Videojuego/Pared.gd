@@ -2,7 +2,7 @@ extends StaticBody2D
 
 func _ready():
 	set_process(true)
-	
+	add_to_group("paredes")
 	pass # Replace with function body.
 
 

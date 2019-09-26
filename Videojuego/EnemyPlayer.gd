@@ -1,14 +1,15 @@
-extends KinematicBody2D
+extends Area2D
 
 const ARRIBA = Vector2(0,-1)
 const ACELERACION = 15
 const VELOCIDAD_MAX  = 300
 export var mov = Vector2()
+export var escudo = 3 setget set_escudo
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(true)
-	pass # Replace with function body.
+	add_to_group("enemigos")
+	pass
 
 
 func _process(delta):
@@ -18,4 +19,7 @@ func _process(delta):
 	$AnimatedSprite.play("default")
 	if position.y >= posCamara.y+100:
 		queue_free()
-	move_and_slide(mov, ARRIBA)
+
+func set_escudo(valor):
+	escudo = valor
+	if escudo <= 0: queue_free()
