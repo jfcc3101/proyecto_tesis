@@ -93,6 +93,7 @@ func crear_paredes():
 		get_node("/root/Mundo/ParedIzquierda").add_child(pared_izq)
 
 func set_escudo(valor):
+	if is_queued_for_deletion(): return
 	escudo = valor
 	if escudo <= 0:
 		for i in get_node("/root/Mundo/EnemySpawner/Container").get_children():
