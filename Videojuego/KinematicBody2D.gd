@@ -1,6 +1,5 @@
 extends Area2D
 
-const ARRIBA = Vector2(0,-1)
 const ACELERACION = 15
 const VELOCIDAD_MAX  = 300
 export var mov = Vector2()
@@ -8,6 +7,7 @@ var pos_izq = Vector2()
 var pos_der = Vector2()
 const esc_bala = preload("res://Bala.tscn")
 const esc_pared = preload("res://Pared.tscn")
+const esc_explosion = preload("res://Explosion.tscn")
 var escudo = 3 setget set_escudo
 export(String,FILE,"*.tscn") var escena_gameover
 
@@ -101,8 +101,14 @@ func set_escudo(valor):
 		queue_free()
 	pass
 	
+func crear_explosion():
+	var explosion = esc_explosion.instance()
+	explosion.set_position(get_position())
+	get_node("/root/Mundo").add_child(explosion)
+
 func on_area_enter(otro):
 	if otro.is_in_group("enemigos"):
+		crear_explosion()
 		set_escudo(escudo-1)
 		#otro.crear_flare()
 		print("vidas: " + str(escudo))

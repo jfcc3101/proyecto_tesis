@@ -1,8 +1,6 @@
 extends Area2D
 
-const ARRIBA = Vector2(0,-1)
-const ACELERACION = 15
-const VELOCIDAD_MAX  = 300
+const esc_explosion = preload("res://Explosion.tscn")
 export var mov = Vector2()
 export var escudo = 2 setget set_escudo
 
@@ -22,7 +20,14 @@ func _process(delta):
 	if position.y >= posCamara.y+100:
 		queue_free()
 		
+func crear_explosion():
+	var explosion = esc_explosion.instance()
+	explosion.set_position(get_position())
+	get_node("/root/Mundo").add_child(explosion)
+
 func set_escudo(valor):
 	escudo = valor
-	if escudo <= 0: queue_free()
+	if escudo <= 0:
+		crear_explosion()
+		queue_free()
 	pass
