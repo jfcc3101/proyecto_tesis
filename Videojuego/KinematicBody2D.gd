@@ -98,8 +98,11 @@ func set_escudo(valor):
 	if escudo <= 0:
 		for i in get_node("/root/Mundo/EnemySpawner/Container").get_children():
 			get_node("/root/Mundo/EnemySpawner/Container").remove_child(i)
-		get_tree().change_scene(escena_gameover)
-		queue_free()
+		$AnimatedSprite.set_visible(false)
+		$Particles2D.set_visible(false)
+		self.mov.y = 0
+		#get_tree().change_scene(escena_gameover)
+		#queue_free()
 	pass
 	
 func crear_explosion():
