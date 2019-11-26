@@ -1,25 +1,26 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Player_right1.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player_right.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player_left1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player_left.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player_left1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player_left.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player_right1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player_right.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Player0.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player1.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/fondo1.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Fireball.png" type="Texture" id=9]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/fondo1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Fireball.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
@@ -71,6 +72,8 @@ limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 
+[node name="HUD" parent="Camera2D" instance=ExtResource( 8 )]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -78,7 +81,7 @@ motion_mirroring = Vector2( 1280, 1280 )
 
 [node name="Fondo" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 scale = Vector2( 2, 2 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 centered = false
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -87,7 +90,7 @@ amount = 20
 lifetime = 0.65
 draw_order = 1
 process_material = SubResource( 4 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="Canones" type="Node2D" parent="."]
 
