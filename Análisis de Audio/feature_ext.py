@@ -16,7 +16,7 @@ onset_env = librosa.onset.onset_strength(y, sr=sr)
 tempo =librosa.beat.tempo(onset_envelope=onset_env, sr=sr)[0]
 print(tempo)
 
-#Témpo Dinámico
+#Tempo Dinamico
 dtempo = librosa.beat.tempo(onset_envelope=onset_env, sr=sr, aggregate=None)
 
 #visualizar tempo a traves del tiempo
@@ -30,7 +30,7 @@ plt.show()
 #Visualizar de otra manera 
 plt.figure()
 time = np.arange(0,len(dtempo),1)
-plt.title('Estimación dinámica de Tempo')
+plt.title('Estimacion dinamica de Tempo')
 plt.plot(time,dtempo)
 plt.show()
 
@@ -54,7 +54,7 @@ plt.colorbar()
 plt.tight_layout()
 plt.show()
 
-#Energía
+#Energia
 librosa.feature.rmse(y=y)
 S, phase = librosa.magphase(librosa.stft(y))
 rms = librosa.feature.rmse(S=S)
