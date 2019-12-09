@@ -1,7 +1,7 @@
 extends Area2D
 
 export var velocidad = Vector2()
-const esc_flare = preload("res://Flare.tscn")
+const esc_flare = preload("res://Escenas/Flare.tscn")
 
 
 func _ready():

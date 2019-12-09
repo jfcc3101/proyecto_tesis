@@ -1,8 +1,8 @@
 extends Node
 
-const enemyCassette = preload("res://EnemyCassette.tscn")
-const enemyDisc = preload("res://EnemyDisc.tscn")
-const enemyPlayer = preload("res://EnemyPlayer.tscn")
+const enemyCassette = preload("res://Escenas/EnemyCassette.tscn")
+const enemyDisc = preload("res://Escenas/EnemyDisc.tscn")
+const enemyPlayer = preload("res://Escenas/EnemyPlayer.tscn")
 #var posCamara = Vector2()
 #var posJugador = Vector2()
 

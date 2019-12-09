@@ -5,9 +5,9 @@ const VELOCIDAD_MAX  = 300
 export var mov = Vector2()
 var pos_izq = Vector2()
 var pos_der = Vector2()
-const esc_bala = preload("res://Bala.tscn")
-const esc_pared = preload("res://Pared.tscn")
-const esc_explosion = preload("res://Explosion.tscn")
+const esc_bala = preload("res://Escenas/Bala.tscn")
+const esc_pared = preload("res://Escenas/Pared.tscn")
+const esc_explosion = preload("res://Escenas/Explosion.tscn")
 var escudo = 3 setget set_escudo
 export(String,FILE,"*.tscn") var escena_gameover
 

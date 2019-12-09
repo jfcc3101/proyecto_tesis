@@ -1,13 +1,15 @@
 extends Area2D
 
-const esc_explosion = preload("res://Explosion.tscn")
+const esc_explosion = preload("res://Escenas/Explosion.tscn")
 export var mov = Vector2()
-export var escudo = 3 setget set_escudo
+export var escudo = 1 setget set_escudo
 
+
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(true)
 	add_to_group("enemigos")
-	pass
+	pass # Replace with function body.
 
 
 func _process(delta):
@@ -17,7 +19,7 @@ func _process(delta):
 	$AnimatedSprite.play("default")
 	if position.y >= posCamara.y+100:
 		queue_free()
-
+	
 func crear_explosion():
 	var explosion = esc_explosion.instance()
 	explosion.set_position(get_position())
@@ -29,3 +31,4 @@ func set_escudo(valor):
 	if escudo <= 0:
 		crear_explosion()
 		queue_free()
+	pass

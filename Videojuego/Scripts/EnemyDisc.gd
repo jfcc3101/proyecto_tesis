@@ -1,6 +1,6 @@
 extends Area2D
 
-const esc_explosion = preload("res://Explosion.tscn")
+const esc_explosion = preload("res://Escenas/Explosion.tscn")
 export var mov = Vector2()
 export var escudo = 2 setget set_escudo
 
