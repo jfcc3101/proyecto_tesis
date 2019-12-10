@@ -1,16 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Fuentes/pixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/logo.png" type="Texture" id=2]
 [ext_resource path="res://BotonesMenu/BotonNP.tscn" type="PackedScene" id=3]
 [ext_resource path="res://BotonesMenu/BotonOpciones.tscn" type="PackedScene" id=4]
 [ext_resource path="res://BotonesMenu/BotonAcercaDe.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/ImagenMenu.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 border_color = Color( 0.8, 0.8, 0.8, 0 )
 
 [sub_resource type="StyleBoxFlat" id=3]
@@ -49,7 +50,7 @@ text = "Music's Spacecraft"
 margin_left = 805.0
 margin_right = 825.0
 margin_bottom = 96.0
-custom_styles/separator = SubResource( 4 )
+custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 20
 
 [node name="LogoImage" type="TextureRect" parent="Menu/Logo"]
@@ -85,7 +86,7 @@ custom_constants/separation = 40
 [node name="Botones" type="VBoxContainer" parent="Menu/HBoxContainer"]
 editor/display_folded = true
 margin_left = 44.0
-margin_right = 976.0
+margin_right = 632.0
 margin_bottom = 396.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -94,15 +95,21 @@ alignment = 1
 
 [node name="BotonNP" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 3 )]
 margin_top = 103.0
-margin_right = 932.0
+margin_right = 588.0
 margin_bottom = 143.0
 
 [node name="BotonOpciones" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 4 )]
 margin_top = 178.0
-margin_right = 932.0
+margin_right = 588.0
 margin_bottom = 218.0
 
 [node name="BotonAcercaDe" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 5 )]
 margin_top = 253.0
-margin_right = 932.0
+margin_right = 588.0
 margin_bottom = 293.0
+
+[node name="TextureRect" type="TextureRect" parent="Menu/HBoxContainer"]
+margin_left = 636.0
+margin_right = 976.0
+margin_bottom = 396.0
+texture = ExtResource( 6 )
