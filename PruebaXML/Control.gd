@@ -20,7 +20,7 @@ func _on_Boton_pressed():
 	#print(path)
 	
 	print(len(cancion))
-	#print(cancion[2])
+	print(cancion[4])
 	cancion[2][0] = ""
 	#cancion[2].erase(0, '[')
 	var tempo = cancion[2].split(" ")

@@ -33,6 +33,13 @@ func _physics_process(delta):
 			i.get_node("Sprite").self_modulate = Color(1,0.3,0)
 		for i in get_node("/root/Mundo/ParedIzquierda").get_children():
 			i.get_node("Sprite").self_modulate = Color(1,1,1)
+		if Input.is_action_just_pressed("ui_up"):
+			crear_laser(pos_izq)
+			crear_laser(pos_der)
+			for i in get_node("/root/Mundo/ParedDerecha").get_children():
+				i.get_node("Sprite").self_modulate = Color(1,0,0)
+			for i in get_node("/root/Mundo/ParedIzquierda").get_children():
+				i.get_node("Sprite").self_modulate = Color(1,0,0)
 		#$AnimatedSprite.self_modulate = Color(0.2,0.3,0.1)
 	elif Input.is_action_pressed("ui_left"):
 		if position.x < -330 or position.x > 330: mov.x *= -1
@@ -42,6 +49,13 @@ func _physics_process(delta):
 			i.get_node("Sprite").self_modulate = Color(1,1,1)
 		for i in get_node("/root/Mundo/ParedIzquierda").get_children():
 			i.get_node("Sprite").self_modulate = Color(1,0.3,0)
+		if Input.is_action_just_pressed("ui_up"):
+			crear_laser(pos_izq)
+			crear_laser(pos_der)
+			for i in get_node("/root/Mundo/ParedDerecha").get_children():
+				i.get_node("Sprite").self_modulate = Color(1,0,0)
+			for i in get_node("/root/Mundo/ParedIzquierda").get_children():
+				i.get_node("Sprite").self_modulate = Color(1,0,0)
 	elif Input.is_action_just_pressed("ui_up"):
 		crear_laser(pos_izq)
 		crear_laser(pos_der)
@@ -62,7 +76,7 @@ func _physics_process(delta):
 			spawner.spawnMPlayer()
 		pass
 		#mov.y = min(mov.y+ACELERACION,VELOCIDAD_MAX)
-	elif position.x < -330 or position.x > 330: mov.x *= -1
+	elif position.x <= -330 or position.x >= 330: mov.x *= -1
 		
 	else:
 		$AnimatedSprite.play("normal")
