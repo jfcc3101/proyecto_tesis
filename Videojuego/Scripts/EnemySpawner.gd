@@ -3,6 +3,8 @@ extends Node
 const enemyCassette = preload("res://Escenas/EnemyCassette.tscn")
 const enemyDisc = preload("res://Escenas/EnemyDisc.tscn")
 const enemyPlayer = preload("res://Escenas/EnemyPlayer.tscn")
+var parser = XMLParser.new()
+var data =  Array()
 #var posCamara = Vector2()
 #var posJugador = Vector2()
 
@@ -49,3 +51,21 @@ func spawnMPlayer():
 	pos.y = posJugador.y-600
 	enemy.position = pos
 	get_node("Container").add_child(enemy)
+	
+func generateFromXML(ruta):
+	parser.open(ruta)
+	for j in range(1,16):
+		var path = ""
+		while (path == ""):
+			parser.read()
+			path = parser.get_node_data()
+		data.append(path)
+	data[1] = float(data[1])
+	for i in range(2,len(data)-1):
+		data[i] = data[i].replace("[","")
+		data[i] = data[i].rsplit(" ")
+	for i in range(2,len(data)-1):
+		data[i] = Array(data[i])
+		for k in range(0,len(data[i])-1):
+			data[i][k] = data[i][k].to_float()
+	pass

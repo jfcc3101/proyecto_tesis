@@ -3,10 +3,11 @@ import librosa.display
 import numpy as np
 import matplotlib.pyplot as plt
 import xml.etree.cElementTree as ET
+from pydub import AudioSegment
 #import eyed3
 
 
-filename = "First date.mp3"
+filename = "Notion.mp3"
 
 #Carga de archivo
 y, sr = librosa.load(filename)
@@ -132,4 +133,12 @@ def to_XML():
     tree = ET.ElementTree(root)
     tree.write("actual.xml")
     
+def to_ogg():
+    mp3_audio = AudioSegment.from_file(filename, format = "mp3")
+    new_filename = filename.replace(".mp3", ".ogg")
+    mp3_audio.export(new_filename, format ="ogg")
+    
+    
+to_ogg()
 to_XML()
+

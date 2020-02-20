@@ -11,18 +11,16 @@
 [ext_resource path="res://Sprites/fondo1.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Fireball.png" type="Texture" id=10]
 
-
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "left",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "right",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "left",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
@@ -71,8 +69,6 @@ zoom = Vector2( 0.7, 0.7 )
 limit_left = -358
 limit_right = 358
 limit_smoothed = true
-drag_margin_h_enabled = false
-drag_margin_v_enabled = false
 
 [node name="HUD" parent="Camera2D" instance=ExtResource( 8 )]
 

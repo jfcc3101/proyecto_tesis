@@ -12,6 +12,13 @@ var escudo = 3 setget set_escudo
 export(String,FILE,"*.tscn") var escena_gameover
 
 func _ready():
+	
+	#Reproducir la música
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://Audios/First Date.ogg")
+	player.play()
+	
 	set_process(true)
 	add_to_group("nave")
 	connect("area_entered",self,"on_area_enter")
