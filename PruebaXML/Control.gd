@@ -11,7 +11,7 @@ func _ready():
 
 
 func _on_Boton_pressed():
-	for j in range(1,16):
+	for j in range(1,17):
 		var path = ""
 		while (path == ""):
 			parser.read()
@@ -27,6 +27,7 @@ func _on_Boton_pressed():
 	cancion[1] = float(cancion[1])
 	for i in range(2,len(cancion)-1):
 		cancion[i] = cancion[i].replace("[","")
+		cancion[i] = cancion[i].replace("]","")
 		cancion[i] = cancion[i].rsplit(" ")
 		print(cancion[i][0])
 	for i in range(2,len(cancion)-1):

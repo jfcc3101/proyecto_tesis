@@ -17,7 +17,7 @@ func _ready():
 	var player = AudioStreamPlayer.new()
 	self.add_child(player)
 	player.stream = load("res://Audios/First Date.ogg")
-	player.play()
+	#player.play()
 	
 	set_process(true)
 	add_to_group("nave")
@@ -27,7 +27,6 @@ func _ready():
 
 func _physics_process(delta):
 	#print($Camera2D.get_camera_position())
-	crear_paredes()
 	pos_canones()
 	var spawner = get_node("/root/Mundo/EnemySpawner")
 	translate(mov*delta)
@@ -36,41 +35,30 @@ func _physics_process(delta):
 		if position.x < -330 or position.x > 330: mov.x *= -1
 		else: mov.x = min(mov.x+ACELERACION,VELOCIDAD_MAX)
 		$AnimatedSprite.play("right")
-		for i in get_node("/root/Mundo/ParedDerecha").get_children():
-			i.get_node("Sprite").self_modulate = Color(1,0.3,0)
-		for i in get_node("/root/Mundo/ParedIzquierda").get_children():
-			i.get_node("Sprite").self_modulate = Color(1,1,1)
+		get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,1,1)
+		get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0.3,0)
 		if Input.is_action_just_pressed("ui_up"):
 			crear_laser(pos_izq)
 			crear_laser(pos_der)
-			for i in get_node("/root/Mundo/ParedDerecha").get_children():
-				i.get_node("Sprite").self_modulate = Color(1,0,0)
-			for i in get_node("/root/Mundo/ParedIzquierda").get_children():
-				i.get_node("Sprite").self_modulate = Color(1,0,0)
+			get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
+			get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
 		#$AnimatedSprite.self_modulate = Color(0.2,0.3,0.1)
 	elif Input.is_action_pressed("ui_left"):
 		if position.x < -330 or position.x > 330: mov.x *= -1
 		else: mov.x = max(mov.x-ACELERACION,-VELOCIDAD_MAX)
 		$AnimatedSprite.play("left")
-		for i in get_node("/root/Mundo/ParedDerecha").get_children():
-			i.get_node("Sprite").self_modulate = Color(1,1,1)
-		for i in get_node("/root/Mundo/ParedIzquierda").get_children():
-			i.get_node("Sprite").self_modulate = Color(1,0.3,0)
+		get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0.3,0)
+		get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,1,1)
 		if Input.is_action_just_pressed("ui_up"):
 			crear_laser(pos_izq)
 			crear_laser(pos_der)
-			for i in get_node("/root/Mundo/ParedDerecha").get_children():
-				i.get_node("Sprite").self_modulate = Color(1,0,0)
-			for i in get_node("/root/Mundo/ParedIzquierda").get_children():
-				i.get_node("Sprite").self_modulate = Color(1,0,0)
+			get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
+			get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
 	elif Input.is_action_just_pressed("ui_up"):
 		crear_laser(pos_izq)
 		crear_laser(pos_der)
-		for i in get_node("/root/Mundo/ParedDerecha").get_children():
-			i.get_node("Sprite").self_modulate = Color(1,0,0)
-		for i in get_node("/root/Mundo/ParedIzquierda").get_children():
-			i.get_node("Sprite").self_modulate = Color(1,0,0)
-		#spawner.spawnCassette()
+		get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
+		get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
 		pass
 	elif Input.is_action_just_pressed("ui_down"):
 		randomize()
@@ -89,7 +77,6 @@ func _physics_process(delta):
 		$AnimatedSprite.play("normal")
 		#$AnimatedSprite.self_modulate = Color(1,1,1)
 		
-	#move_and_slide(mov, ARRIBA)
 	
 func pos_canones():
 	pos_izq = Vector2(self.position.x-24,self.position.y-12)
@@ -104,14 +91,6 @@ func crear_laser(pos):
 	get_node("/root").add_child(bala)
 	pass
 	
-func crear_paredes():
-	if int(self.position.y) % 3 == 0:
-		var pared_der = esc_pared.instance()
-		pared_der.set_position(Vector2(354,self.position.y-350))
-		get_node("/root/Mundo/ParedDerecha").add_child(pared_der)
-		var pared_izq = esc_pared.instance()
-		pared_izq.set_position(Vector2(-354,self.position.y-350))
-		get_node("/root/Mundo/ParedIzquierda").add_child(pared_izq)
 
 func set_escudo(valor):
 	if is_queued_for_deletion(): return

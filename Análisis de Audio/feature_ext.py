@@ -84,7 +84,8 @@ plt.figure()
 librosa.display.waveplot(y, sr=sr)
 plt.title('wave')
 """
-
+#Convierte los datos obtenidos a partir de la pista en un archivo XML que puede
+#ser procesado por Godot Engine
 def to_XML():
     
     root = ET.Element("root")
@@ -129,10 +130,13 @@ def to_XML():
     ET.SubElement(root, "energy").text = strEnergy
     
     #ET.SubElement(root, "tempograma").text = str(*tempogram)
+    
+    new_xmlfilename = filename.replace(".mp3", ".xml")
 
     tree = ET.ElementTree(root)
-    tree.write("actual.xml")
+    tree.write(new_xmlfilename)
     
+#Convierte la pista de mp3 a ogg para que pueda ser reproducida en Godot Engine
 def to_ogg():
     mp3_audio = AudioSegment.from_file(filename, format = "mp3")
     new_filename = filename.replace(".mp3", ".ogg")

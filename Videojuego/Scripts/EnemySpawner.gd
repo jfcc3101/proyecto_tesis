@@ -54,7 +54,7 @@ func spawnMPlayer():
 	
 func generateFromXML(ruta):
 	parser.open(ruta)
-	for j in range(1,16):
+	for j in range(1,17):
 		var path = ""
 		while (path == ""):
 			parser.read()
