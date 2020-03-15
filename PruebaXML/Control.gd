@@ -37,6 +37,7 @@ func _on_Boton_pressed():
 			cancion[i][k] = cancion[i][k].to_float()
 		
 	print("suma" + str(cancion[3][0] + cancion[4][0]))
+	#print("datos: "+ str(len(cancion[2])))
 	#cancion[2][0] = ""
 	#cancion[2].erase(0, '[')
 	"""var tempo = Array(cancion[2])

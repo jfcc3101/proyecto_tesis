@@ -13,7 +13,7 @@ func _ready():
 	#print(get_path())
 	
 	#var posCamara = get_node("/root/Mundo/Jugador/Camera2D").get_camera_position()
-	randomize()
+	"""randomize()
 	var enemigo = rand_range(0,3)
 	if enemigo <= 1:
 		spawnCassette()
@@ -21,36 +21,49 @@ func _ready():
 		spawnDisc()
 	else:
 		spawnMPlayer()
-	
-func spawnCassette():
+	"""
+func spawnCassette(posX):
 	var posJugador = get_node("/root/Mundo/Jugador").position
 	randomize()
 	var enemy = enemyCassette.instance()
 	var pos = Vector2()
-	pos.x = rand_range(posJugador.x-340,posJugador.x+330)
+	#pos.x = rand_range(posJugador.x-340,posJugador.x+330)
+	pos.x = posX
 	pos.y = posJugador.y-600
 	enemy.position = pos
 	get_node("Container").add_child(enemy)
 	
-func spawnDisc():
+func spawnDisc(posX):
 	var posJugador = get_node("/root/Mundo/Jugador").position
 	randomize()
 	var enemy = enemyDisc.instance()
 	var pos = Vector2()
-	pos.x = rand_range(posJugador.x-340,posJugador.x+330)
+	pos.x = posX
+	#pos.x = rand_range(posJugador.x-340,posJugador.x+330)
 	pos.y = posJugador.y-600
 	enemy.position = pos
 	get_node("Container").add_child(enemy)
 
-func spawnMPlayer():
+func spawnMPlayer(posX):
 	var posJugador = get_node("/root/Mundo/Jugador").position
 	randomize()
 	var enemy = enemyPlayer.instance()
 	var pos = Vector2()
-	pos.x = rand_range(posJugador.x-340,posJugador.x+330)
+	pos.x = posX
+	#pos.x = rand_range(posJugador.x-340,posJugador.x+330)
 	pos.y = posJugador.y-600
 	enemy.position = pos
 	get_node("Container").add_child(enemy)
+	
+func spawnAleatorio(posX):
+	randomize()
+	var enemigo = rand_range(0,3)
+	if enemigo <= 1:
+		spawnCassette(posX)
+	elif enemigo <= 2:
+		spawnDisc(posX)
+	else:
+		spawnMPlayer(posX)
 	
 func generateFromXML(ruta):
 	parser.open(ruta)
@@ -63,9 +76,12 @@ func generateFromXML(ruta):
 	data[1] = float(data[1])
 	for i in range(2,len(data)-1):
 		data[i] = data[i].replace("[","")
+		data[i] = data[i].replace("]","")
 		data[i] = data[i].rsplit(" ")
 	for i in range(2,len(data)-1):
 		data[i] = Array(data[i])
 		for k in range(0,len(data[i])-1):
 			data[i][k] = data[i][k].to_float()
+			
+	
 	pass

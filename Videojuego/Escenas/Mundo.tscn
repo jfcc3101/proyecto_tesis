@@ -12,3 +12,5 @@ escena_gameover = "res://GameOver.tscn"
 script = ExtResource( 2 )
 
 [node name="Container" type="Node" parent="EnemySpawner"]
+
+[node name="Timer" type="Timer" parent="EnemySpawner/Container"]

@@ -95,3 +95,8 @@ texture = ExtResource( 10 )
 [node name="izq" type="Position2D" parent="Canones"]
 
 [node name="der" type="Position2D" parent="Canones"]
+
+[node name="TimerVel" type="Timer" parent="."]
+wait_time = 0.022
+autostart = true
+[connection signal="timeout" from="TimerVel" to="." method="TimerVelTimeout"]

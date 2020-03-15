@@ -72,6 +72,9 @@ margin_bottom = 23.0
 custom_fonts/font = SubResource( 3 )
 text = "Nombre de pista"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ParedIzq" type="Sprite" parent="CanvasHUD"]
 scale = Vector2( 1, 50 )
