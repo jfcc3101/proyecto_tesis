@@ -2,9 +2,16 @@ extends Area2D
 
 export var velocidad = Vector2()
 const esc_flare = preload("res://Escenas/Flare.tscn")
+#onready var fxplayer = AudioStreamPlayer.new()
 
 
 func _ready():
+	var fxplayer = AudioStreamPlayer.new()
+	self.add_child(fxplayer)
+	fxplayer.set_volume_db(1)
+	fxplayer.stream = load("res://AudioFX/Shot1.wav")
+	fxplayer.autoplay = false
+	fxplayer.play()
 	connect("area_entered",self,"on_area_enter")
 	set_process(true)
 	crear_flare()

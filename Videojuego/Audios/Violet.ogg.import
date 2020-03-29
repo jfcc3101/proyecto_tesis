@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Violet.ogg-91da21d0c3a6d750d55bfd40cc6d7622.oggstr"
+
+[deps]
+
+source_file="res://Audios/Violet.ogg"
+dest_files=[ "res://.import/Violet.ogg-91da21d0c3a6d750d55bfd40cc6d7622.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

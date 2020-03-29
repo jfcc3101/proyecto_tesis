@@ -5,6 +5,7 @@ const enemyDisc = preload("res://Escenas/EnemyDisc.tscn")
 const enemyPlayer = preload("res://Escenas/EnemyPlayer.tscn")
 var parser = XMLParser.new()
 var data =  Array()
+var contEnemigos = [0,0,0,0,0,0,0,0,0,0,0,0]
 #var posCamara = Vector2()
 #var posJugador = Vector2()
 
@@ -56,6 +57,21 @@ func spawnMPlayer(posX):
 	get_node("Container").add_child(enemy)
 	
 func spawnAleatorio(posX):
+	
+	if posX > -318 and posX < -265: contEnemigos[0] = contEnemigos[0]+1
+	elif posX > -264 and posX < -212: contEnemigos[1] = contEnemigos[1]+1
+	elif posX > -211 and posX < -159: contEnemigos[2] = contEnemigos[2]+1
+	elif posX > -158 and posX < -106: contEnemigos[3] = contEnemigos[3]+1
+	elif posX > -105 and posX < -53: contEnemigos[4] = contEnemigos[4]+1
+	elif posX > -52 and posX < 0: contEnemigos[5] = contEnemigos[5]+1
+	elif posX > 1 and posX < 53: contEnemigos[6] = contEnemigos[6]+1
+	elif posX > 54 and posX < 106: contEnemigos[7] = contEnemigos[7]+1
+	elif posX > 107 and posX < 159: contEnemigos[8] = contEnemigos[8]+1
+	elif posX > 160 and posX < 212: contEnemigos[9] = contEnemigos[9]+1
+	elif posX > 213 and posX < 265: contEnemigos[10] = contEnemigos[10]+1
+	elif posX > 266 and posX < 318: contEnemigos[11] = contEnemigos[11]+1
+	else: pass
+	
 	randomize()
 	var enemigo = rand_range(0,3)
 	if enemigo <= 1:

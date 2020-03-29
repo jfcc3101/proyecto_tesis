@@ -20,7 +20,7 @@ func _ready():
 	#Reproducir la música
 	#var player = AudioStreamPlayer.new()
 	self.add_child(player)
-	player.stream = load("res://Audios/First Date.ogg")
+	player.stream = load("res://Audios/Violet.ogg")
 	player.play()
 	player.autoplay = false
 	
@@ -31,7 +31,7 @@ func _ready():
 	add_to_group("nave")
 	connect("area_entered",self,"on_area_enter")
 	
-	spawner.generateFromXML("res://XML/First Date.xml")
+	spawner.generateFromXML("res://XML/Violet.xml")
 	get_node("Camera2D/HUD/CanvasHUD/LabelNombrePista").set_text(get_node("/root/Mundo/EnemySpawner").data[0])
 	pass
 
@@ -165,44 +165,46 @@ func TimerVelTimeout():
 	randomize()
 	for i in range(rand_range(2,7)):
 		if get_tree().get_nodes_in_group("enemigos").size() < 12:
-			if ordenados[i][1] == 0 and ordenados[i][0]>0.7:
+			if ordenados[i][1] == 0 and ordenados[i][0]>0.65 and spawner.contEnemigos[0] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-318,-281))
-			elif ordenados[i][1] == 1 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 1 and ordenados[i][0]>0.65 and spawner.contEnemigos[1] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-248,-228))
-			elif ordenados[i][1] == 2 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 2 and ordenados[i][0]>0.65 and spawner.contEnemigos[2] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-195,-175))
-			elif ordenados[i][1] == 3 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 3 and ordenados[i][0]>0.65 and spawner.contEnemigos[3] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-142,-122))
-			elif ordenados[i][1] == 4 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 4 and ordenados[i][0]>0.65 and spawner.contEnemigos[4] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-89,-69))
-			elif ordenados[i][1] == 5 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 5 and ordenados[i][0]>0.65 and spawner.contEnemigos[5] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-36,-16))
-			elif ordenados[i][1] == 6 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 6 and ordenados[i][0]>0.65 and spawner.contEnemigos[6] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(17,37))
-			elif ordenados[i][1] == 7 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 7 and ordenados[i][0]>0.65 and spawner.contEnemigos[7] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(70,90))
-			elif ordenados[i][1] == 8 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 8 and ordenados[i][0]>0.65 and spawner.contEnemigos[8] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(123,143))
-			elif ordenados[i][1] == 9 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 9 and ordenados[i][0]>0.65 and spawner.contEnemigos[9] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(176,196))
-			elif ordenados[i][1] == 10 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 10 and ordenados[i][0]>0.65 and spawner.contEnemigos[10] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(229,249))
-			elif ordenados[i][1] == 11 and ordenados[i][0]>0.7:
+			elif ordenados[i][1] == 11 and ordenados[i][0]>0.65 and spawner.contEnemigos[11] <= 1:
 				randomize()
 				spawner.spawnAleatorio(rand_range(282,318))
+			else:
+				pass
 		pass
 		
-	
+	print(spawner.contEnemigos)
 	contArchivo += 1
 	pass # Replace with function body.
