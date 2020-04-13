@@ -7,6 +7,7 @@ const esc_flare = preload("res://Escenas/Flare.tscn")
 
 func _ready():
 	var fxplayer = AudioStreamPlayer.new()
+	fxplayer.set_bus("SFX")
 	self.add_child(fxplayer)
 	fxplayer.set_volume_db(1)
 	fxplayer.stream = load("res://AudioFX/Shot1.wav")

@@ -16,11 +16,11 @@ onready var player = AudioStreamPlayer.new()
 var contArchivo = 0
 
 func _ready():
-	
 	#Reproducir la música
 	#var player = AudioStreamPlayer.new()
 	self.add_child(player)
 	player.stream = load("res://Audios/Violet.ogg")
+	player.set_bus("Music")
 	player.play()
 	player.autoplay = false
 	
@@ -205,6 +205,6 @@ func TimerVelTimeout():
 				pass
 		pass
 		
-	print(spawner.contEnemigos)
+	#print(spawner.contEnemigos)
 	contArchivo += 1
 	pass # Replace with function body.
