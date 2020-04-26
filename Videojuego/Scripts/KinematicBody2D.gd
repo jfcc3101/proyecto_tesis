@@ -6,8 +6,8 @@ export var mov = Vector2()
 var pos_izq = Vector2()
 var pos_der = Vector2()
 const esc_bala = preload("res://Escenas/Bala.tscn")
-const esc_pared = preload("res://Escenas/Pared.tscn")
 const esc_explosion = preload("res://Escenas/Explosion.tscn")
+const esc_estrella = preload("res://Escenas/Estrella.tscn")
 var escudo = 3 setget set_escudo
 export(String,FILE,"*.tscn") var escena_gameover
 onready var spawner = get_node("/root/Mundo/EnemySpawner")
@@ -134,11 +134,26 @@ func on_area_enter(otro):
 		#otro.crear_flare()
 		print("vidas: " + str(escudo))
 		
-	elif otro.is_in_group("paredes"):
-		mov.x *= -1
 
+func crear_estrella():
+	var estrella = esc_estrella.instance()
+	randomize()
+	var posx = rand_range(-340,340)
+	var pos_est = Vector2()
+	pos_est.x = posx
+	pos_est.y = get_position().y-600
+	estrella.set_position(pos_est)
+	#estrella.play("default")
+	get_node("/root/Mundo/Estrellas").add_child(estrella)
+	#print("Estrella creada")
+	
+	
 
 func TimerVelTimeout():
+	randomize()
+	var randomEstrella = rand_range(0,100)
+	if(randomEstrella < 50):
+		crear_estrella()
 	if contArchivo == len(get_node("/root/Mundo/EnemySpawner").data[2])-1:
 		mov.y = 0
 		timer.stop()

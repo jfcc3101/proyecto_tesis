@@ -49,3 +49,10 @@ func borrarDeLista():
 	elif position.x > 160 and position.x < 212: spawner.contEnemigos[9] = spawner.contEnemigos[9]-1
 	elif position.x > 213 and position.x < 265: spawner.contEnemigos[10] = spawner.contEnemigos[10]-1
 	elif position.x > 266 and position.x < 318: spawner.contEnemigos[11] = spawner.contEnemigos[11]-1
+
+
+func _on_area_enter(area):
+	if area.is_in_group("enemigos"):
+		borrarDeLista()
+		queue_free()
+	pass # Replace with function body.

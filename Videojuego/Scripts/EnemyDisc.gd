@@ -36,6 +36,12 @@ func set_escudo(valor):
 		queue_free()
 	pass
 	
+func on_area_enter(otro):
+	if otro.is_in_group("enemigos"):
+		borrarDeLista()
+		queue_free()
+		
+	
 func borrarDeLista():
 	if position.x > -318 and position.x < -265: spawner.contEnemigos[0] = spawner.contEnemigos[0]-1
 	elif position.x > -264 and position.x < -212: spawner.contEnemigos[1] = spawner.contEnemigos[1]-1
