@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/player2_right2.png" type="Texture" id=2]
@@ -15,14 +15,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "right",
-"speed": 20.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "left",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "right",
 "speed": 20.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 6 ) ],
@@ -30,6 +30,22 @@ animations = [ {
 "name": "normal",
 "speed": 20.0
 } ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "safe"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, -16, -27, 0, -27, 10, 27, 10, 27, 0 )
@@ -53,6 +69,9 @@ mov = Vector2( 0, -100 )
 frames = SubResource( 1 )
 animation = "normal"
 frame = 1
+
+[node name="AnimationSafe" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/safe = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
@@ -95,4 +114,7 @@ texture = ExtResource( 10 )
 [node name="TimerVel" type="Timer" parent="."]
 wait_time = 0.022
 autostart = true
+
+[node name="TimerSafe" type="Timer" parent="."]
 [connection signal="timeout" from="TimerVel" to="." method="TimerVelTimeout"]
+[connection signal="timeout" from="TimerSafe" to="." method="_on_TimerSafe_timeout"]

@@ -29,6 +29,7 @@ func set_escudo(valor):
 	if is_queued_for_deletion(): return
 	escudo = valor
 	if escudo <= 0:
+		get_node("/root/Mundo/Jugador").actualScore+=150
 		borrarDeLista()
 		crear_explosion()
 		queue_free()

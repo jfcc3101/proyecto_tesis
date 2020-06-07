@@ -21,4 +21,5 @@ func _process(delta):
 		get_node("CanvasHUD/Vida2").set_visible(false)
 		get_node("CanvasHUD/Vida1").set_visible(false)
 		$CanvasHUD/LabelGameOver.set_visible(true)
+	get_node("CanvasHUD/LabelScore").set_text("SCORE:"+str(get_node("/root/Mundo/Jugador").actualScore))
 	pass

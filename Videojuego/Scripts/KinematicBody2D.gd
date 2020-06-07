@@ -12,8 +12,10 @@ var escudo = 3 setget set_escudo
 export(String,FILE,"*.tscn") var escena_gameover
 onready var spawner = get_node("/root/Mundo/EnemySpawner")
 onready var timer = get_node("TimerVel")
+onready var timersafe = get_node("TimerSafe")
 onready var player = AudioStreamPlayer.new()
 var contArchivo = 0
+var actualScore = 0
 
 func _ready():
 	#Reproducir la música
@@ -26,6 +28,8 @@ func _ready():
 	
 	timer.set_wait_time(0.0227272727272727)
 	timer.start()
+	timersafe.set_wait_time(1.8)
+	timersafe.set_one_shot(true)
 	
 	set_process(true)
 	add_to_group("nave")
@@ -47,30 +51,30 @@ func _physics_process(delta):
 		if position.x < -330 or position.x > 330: mov.x *= -1
 		else: mov.x = min(mov.x+ACELERACION,VELOCIDAD_MAX)
 		$AnimatedSprite.play("right")
-		get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,1,1)
-		get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0.3,0)
+		#get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,1,1)
+		#get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0.3,0)
 		if Input.is_action_just_pressed("ui_up"):
 			crear_laser(pos_izq)
 			crear_laser(pos_der)
-			get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
-			get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
+			#get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
+			#get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
 		#$AnimatedSprite.self_modulate = Color(0.2,0.3,0.1)
 	elif Input.is_action_pressed("ui_left"):
 		if position.x < -330 or position.x > 330: mov.x *= -1
 		else: mov.x = max(mov.x-ACELERACION,-VELOCIDAD_MAX)
 		$AnimatedSprite.play("left")
-		get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0.3,0)
-		get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,1,1)
+		#get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0.3,0)
+		#get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,1,1)
 		if Input.is_action_just_pressed("ui_up"):
 			crear_laser(pos_izq)
 			crear_laser(pos_der)
-			get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
-			get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
+			#get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
+			#get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
 	elif Input.is_action_just_pressed("ui_up"):
 		crear_laser(pos_izq)
 		crear_laser(pos_der)
-		get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
-		get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
+		#get_node("Camera2D/HUD/CanvasHUD/ParedIzq").self_modulate = Color(1,0,0)
+		#get_node("Camera2D/HUD/CanvasHUD/ParedDer").self_modulate = Color(1,0,0)
 		pass
 	elif position.x <= -330 or position.x >= 330: mov.x *= -1
 	else:
@@ -129,10 +133,15 @@ func crear_explosion():
 
 func on_area_enter(otro):
 	if otro.is_in_group("enemigos"):
-		crear_explosion()
-		set_escudo(escudo-1)
+		if timersafe.is_stopped():
+			crear_explosion()
+			set_escudo(escudo-1)
+			get_node("AnimatedSprite/AnimationSafe").play("safe")
+			#$CollisionShape2D.set_disabled(true)
+			#print($CollisionShape2D.is_disabled())
+			timersafe.start()
 		#otro.crear_flare()
-		print("vidas: " + str(escudo))
+			print("vidas: " + str(escudo))
 		
 
 func crear_estrella():
@@ -141,10 +150,10 @@ func crear_estrella():
 	var posx = rand_range(-340,340)
 	var pos_est = Vector2()
 	pos_est.x = posx
-	pos_est.y = get_position().y-600
+	pos_est.y = get_position().y-400
 	estrella.set_position(pos_est)
 	#estrella.play("default")
-	get_node("/root/Mundo/Estrellas").add_child(estrella)
+	get_node("Camera2D/HUD").add_child(estrella)
 	#print("Estrella creada")
 	
 	
@@ -222,4 +231,9 @@ func TimerVelTimeout():
 		
 	#print(spawner.contEnemigos)
 	contArchivo += 1
+	pass # Replace with function body.
+
+
+func _on_TimerSafe_timeout():
+	print("Colisión activada")
 	pass # Replace with function body.

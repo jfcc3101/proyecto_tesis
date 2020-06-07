@@ -30,7 +30,7 @@ func spawnCassette(posX):
 	var pos = Vector2()
 	#pos.x = rand_range(posJugador.x-340,posJugador.x+330)
 	pos.x = posX
-	pos.y = posJugador.y-600
+	pos.y = posJugador.y-400
 	enemy.position = pos
 	get_node("Container").add_child(enemy)
 	
@@ -41,7 +41,7 @@ func spawnDisc(posX):
 	var pos = Vector2()
 	pos.x = posX
 	#pos.x = rand_range(posJugador.x-340,posJugador.x+330)
-	pos.y = posJugador.y-600
+	pos.y = posJugador.y-400
 	enemy.position = pos
 	get_node("Container").add_child(enemy)
 
@@ -52,7 +52,7 @@ func spawnMPlayer(posX):
 	var pos = Vector2()
 	pos.x = posX
 	#pos.x = rand_range(posJugador.x-340,posJugador.x+330)
-	pos.y = posJugador.y-600
+	pos.y = posJugador.y-400
 	enemy.position = pos
 	get_node("Container").add_child(enemy)
 	

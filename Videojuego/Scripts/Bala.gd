@@ -32,5 +32,6 @@ func crear_flare():
 func on_area_enter(otro):
 	if otro.is_in_group("enemigos"):
 		otro.escudo -= 1
+		#get_node("/root/Mundo/Jugador").actualScore+=50
 		crear_flare()
 		queue_free()
