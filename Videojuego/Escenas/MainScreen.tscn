@@ -1,20 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Fuentes/pixel.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Sprites/logo.png" type="Texture" id=2]
+[ext_resource path="res://BotonesMenu/NameMain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BotonesMenu/BotonNP.tscn" type="PackedScene" id=3]
 [ext_resource path="res://BotonesMenu/BotonOpciones.tscn" type="PackedScene" id=4]
 [ext_resource path="res://BotonesMenu/BotonAcercaDe.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/ImagenMenu.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/MainScreen.gd" type="Script" id=7]
+[ext_resource path="res://BotonesMenu/BotonScores.tscn" type="PackedScene" id=8]
 
-[sub_resource type="DynamicFont" id=1]
-size = 80
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-border_color = Color( 0.8, 0.8, 0.8, 0 )
-
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0.486275, 0, 1 )
 border_width_bottom = 5
 border_color = Color( 1, 0.486275, 0, 1 )
 corner_detail = 12
@@ -22,57 +17,38 @@ corner_detail = 12
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Menu" type="VBoxContainer" parent="."]
-margin_left = 24.0
-margin_top = 30.0
-margin_right = 1000.0
-margin_bottom = 570.0
+anchor_left = 0.023
+anchor_top = 0.05
+anchor_right = 0.977
+anchor_bottom = 0.95
+margin_left = 0.447998
+margin_right = -0.448059
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Logo" type="HBoxContainer" parent="Menu"]
-editor/display_folded = true
-margin_right = 976.0
+[node name="Logo" parent="Menu" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 975.0
 margin_bottom = 96.0
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="Nombre" type="Label" parent="Menu/Logo"]
-margin_left = 51.0
-margin_top = 5.0
-margin_right = 801.0
-margin_bottom = 90.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 1, 0.0156863, 1 )
-custom_colors/font_color_shadow = Color( 1, 0.486275, 0, 1 )
-text = "Music's Spacecraft"
-
-[node name="SeparatorNL" type="VSeparator" parent="Menu/Logo"]
-margin_left = 805.0
-margin_right = 825.0
-margin_bottom = 96.0
-custom_styles/separator = SubResource( 2 )
-custom_constants/separation = 20
-
-[node name="LogoImage" type="TextureRect" parent="Menu/Logo"]
-margin_left = 829.0
-margin_right = 925.0
-margin_bottom = 96.0
-rect_min_size = Vector2( 96, 96 )
-rect_clip_content = true
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 1
 
 [node name="HSeparator" type="HSeparator" parent="Menu"]
 margin_top = 100.0
-margin_right = 976.0
+margin_right = 975.0
 margin_bottom = 140.0
-custom_styles/separator = SubResource( 3 )
+custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
 margin_top = 144.0
-margin_right = 976.0
+margin_right = 975.0
 margin_bottom = 540.0
 size_flags_vertical = 3
 
@@ -84,9 +60,8 @@ margin_bottom = 396.0
 custom_constants/separation = 40
 
 [node name="Botones" type="VBoxContainer" parent="Menu/HBoxContainer"]
-editor/display_folded = true
 margin_left = 44.0
-margin_right = 632.0
+margin_right = 631.0
 margin_bottom = 396.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -94,22 +69,32 @@ custom_constants/separation = 35
 alignment = 1
 
 [node name="BotonNP" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 3 )]
-margin_top = 103.0
-margin_right = 588.0
-margin_bottom = 143.0
+margin_top = 55.0
+margin_right = 587.0
+margin_bottom = 95.0
 
 [node name="BotonOpciones" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 4 )]
-margin_top = 178.0
-margin_right = 588.0
-margin_bottom = 218.0
+margin_top = 130.0
+margin_right = 587.0
+margin_bottom = 170.0
+
+[node name="BotonScores" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 8 )]
+margin_top = 205.0
+margin_right = 587.0
+margin_bottom = 255.0
 
 [node name="BotonAcercaDe" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 5 )]
-margin_top = 253.0
-margin_right = 588.0
-margin_bottom = 293.0
+margin_top = 290.0
+margin_right = 587.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 360, 50 )
 
 [node name="TextureRect" type="TextureRect" parent="Menu/HBoxContainer"]
-margin_left = 636.0
-margin_right = 976.0
+margin_left = 635.0
+margin_right = 975.0
 margin_bottom = 396.0
 texture = ExtResource( 6 )
+stretch_mode = 6
+[connection signal="pressed" from="Menu/HBoxContainer/Botones/BotonNP" to="." method="_on_BotonNP_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/Botones/BotonOpciones" to="." method="_on_BotonOpciones_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/Botones/BotonAcercaDe" to="." method="_on_BotonAcercaDe_pressed"]

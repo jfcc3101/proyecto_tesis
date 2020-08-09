@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/No Money.ogg-346c3de9271ab3e5a17e5abb9ae7c654.oggstr"
+
+[deps]
+
+source_file="res://Audios/No Money.ogg"
+dest_files=[ "res://.import/No Money.ogg-346c3de9271ab3e5a17e5abb9ae7c654.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

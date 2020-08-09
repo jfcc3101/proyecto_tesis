@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Avenged Sevenfold - A Little Piece Of Heaven.ogg-dac8f0231cebe260930a74196a870b63.oggstr"
+
+[deps]
+
+source_file="res://Audios/Avenged Sevenfold - A Little Piece Of Heaven.ogg"
+dest_files=[ "res://.import/Avenged Sevenfold - A Little Piece Of Heaven.ogg-dac8f0231cebe260930a74196a870b63.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

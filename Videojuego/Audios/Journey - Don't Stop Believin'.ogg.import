@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Journey - Don't Stop Believin'.ogg-6ff474427a2c707307c2b686ec594009.oggstr"
+
+[deps]
+
+source_file="res://Audios/Journey - Don't Stop Believin'.ogg"
+dest_files=[ "res://.import/Journey - Don't Stop Believin'.ogg-6ff474427a2c707307c2b686ec594009.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

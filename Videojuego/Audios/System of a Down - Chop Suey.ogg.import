@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/System of a Down - Chop Suey.ogg-04a570499ac999487e7f007930c7debb.oggstr"
+
+[deps]
+
+source_file="res://Audios/System of a Down - Chop Suey.ogg"
+dest_files=[ "res://.import/System of a Down - Chop Suey.ogg-04a570499ac999487e7f007930c7debb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

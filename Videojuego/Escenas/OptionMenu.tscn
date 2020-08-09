@@ -1,0 +1,195 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Fuentes/pixel.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/Gear.png" type="Texture" id=2]
+[ext_resource path="res://Fuentes/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://BotonesMenu/MenuButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/OptionMenu.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0.486275, 0, 1 )
+border_width_bottom = 5
+border_color = Color( 1, 0.486275, 0, 1 )
+corner_detail = 12
+
+[sub_resource type="DynamicFont" id=3]
+size = 37
+font_data = ExtResource( 3 )
+
+[node name="OptionMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuOpciones" type="VBoxContainer" parent="."]
+anchor_left = 0.023
+anchor_top = 0.05
+anchor_right = 0.977
+anchor_bottom = 0.95
+margin_left = 0.448
+margin_top = 1.90735e-06
+margin_right = -0.447937
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titulo" type="HBoxContainer" parent="MenuOpciones"]
+margin_left = 244.0
+margin_right = 731.0
+margin_bottom = 96.0
+size_flags_horizontal = 4
+
+[node name="NombreOpciones" type="Label" parent="MenuOpciones/Titulo"]
+margin_top = 5.0
+margin_right = 363.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 1, 0.0156863, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.486275, 0, 1 )
+text = "Opciones"
+
+[node name="VSeparatorNO" type="VSeparator" parent="MenuOpciones/Titulo"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 367.0
+margin_right = 387.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="MenuOpciones/Titulo"]
+margin_left = 391.0
+margin_right = 487.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 96, 96 )
+rect_clip_content = true
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="MenuOpciones"]
+margin_top = 100.0
+margin_right = 976.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 0, 40 )
+custom_styles/separator = SubResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuOpciones"]
+margin_top = 144.0
+margin_right = 976.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="MenuOpciones/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 40, 0 )
+
+[node name="VBoxContainerLabels" type="VBoxContainer" parent="MenuOpciones/HBoxContainer"]
+margin_left = 44.0
+margin_right = 754.0
+margin_bottom = 396.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 35
+alignment = 1
+
+[node name="LabVol" type="Label" parent="MenuOpciones/HBoxContainer/VBoxContainerLabels"]
+margin_top = 65.0
+margin_right = 710.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 1, 0.486275, 0, 1 )
+text = "VOLUMEN GENERAL"
+
+[node name="LabVol2" type="Label" parent="MenuOpciones/HBoxContainer/VBoxContainerLabels"]
+margin_top = 137.0
+margin_right = 710.0
+margin_bottom = 174.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 1, 0.486275, 0, 1 )
+text = "VOLUMEN DE MÚSICA"
+
+[node name="LabVol3" type="Label" parent="MenuOpciones/HBoxContainer/VBoxContainerLabels"]
+margin_top = 209.0
+margin_right = 710.0
+margin_bottom = 246.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 1, 0.486275, 0, 1 )
+text = "VOLUMEN DE EFECTOS"
+
+[node name="Botonvolver" parent="MenuOpciones/HBoxContainer/VBoxContainerLabels" instance=ExtResource( 4 )]
+margin_top = 281.0
+margin_right = 710.0
+margin_bottom = 331.0
+
+[node name="VolGen" type="HBoxContainer" parent="MenuOpciones/HBoxContainer"]
+margin_left = 758.0
+margin_right = 932.0
+margin_bottom = 396.0
+
+[node name="VSeparator" type="VSeparator" parent="MenuOpciones/HBoxContainer/VolGen"]
+margin_right = 20.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="VBoxContainerSliders" type="VBoxContainer" parent="MenuOpciones/HBoxContainer/VolGen"]
+margin_left = 24.0
+margin_right = 174.0
+margin_bottom = 396.0
+custom_constants/separation = 35
+alignment = 1
+
+[node name="SliderGeneral" type="HSlider" parent="MenuOpciones/HBoxContainer/VolGen/VBoxContainerSliders"]
+margin_top = 65.0
+margin_right = 150.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 150, 37 )
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="SliderMusica" type="HSlider" parent="MenuOpciones/HBoxContainer/VolGen/VBoxContainerSliders"]
+margin_top = 137.0
+margin_right = 150.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 0, 37 )
+min_value = -30.0
+max_value = 0.0
+
+[node name="SliderEfectos" type="HSlider" parent="MenuOpciones/HBoxContainer/VolGen/VBoxContainerSliders"]
+margin_top = 209.0
+margin_right = 150.0
+margin_bottom = 246.0
+rect_min_size = Vector2( 0, 37 )
+min_value = -30.0
+max_value = 0.0
+value = -10.0
+
+[node name="HSeparator" type="HSeparator" parent="MenuOpciones/HBoxContainer/VolGen/VBoxContainerSliders"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 281.0
+margin_right = 150.0
+margin_bottom = 331.0
+custom_constants/separation = 50
+
+[node name="VSeparator2" type="VSeparator" parent="MenuOpciones/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 936.0
+margin_right = 976.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 40, 0 )
+[connection signal="pressed" from="MenuOpciones/HBoxContainer/VBoxContainerLabels/Botonvolver" to="." method="_on_Botonvolver_pressed"]
+[connection signal="value_changed" from="MenuOpciones/HBoxContainer/VolGen/VBoxContainerSliders/SliderGeneral" to="." method="_on_SliderGeneral_value_changed"]
+[connection signal="value_changed" from="MenuOpciones/HBoxContainer/VolGen/VBoxContainerSliders/SliderMusica" to="." method="_on_SliderMusica_value_changed"]
+[connection signal="value_changed" from="MenuOpciones/HBoxContainer/VolGen/VBoxContainerSliders/SliderEfectos" to="." method="_on_SliderEfectos_value_changed"]

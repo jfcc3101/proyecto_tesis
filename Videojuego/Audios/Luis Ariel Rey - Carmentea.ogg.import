@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Luis Ariel Rey - Carmentea.ogg-b4e7e65b3fad0dbda9495756ca9c68b1.oggstr"
+
+[deps]
+
+source_file="res://Audios/Luis Ariel Rey - Carmentea.ogg"
+dest_files=[ "res://.import/Luis Ariel Rey - Carmentea.ogg-b4e7e65b3fad0dbda9495756ca9c68b1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -11,18 +11,8 @@ var contEnemigos = [0,0,0,0,0,0,0,0,0,0,0,0]
 
 
 func _ready():
-	#print(get_path())
+	pass
 	
-	#var posCamara = get_node("/root/Mundo/Jugador/Camera2D").get_camera_position()
-	"""randomize()
-	var enemigo = rand_range(0,3)
-	if enemigo <= 1:
-		spawnCassette()
-	elif enemigo <= 2:
-		spawnDisc()
-	else:
-		spawnMPlayer()
-	"""
 func spawnCassette(posX):
 	var posJugador = get_node("/root/Mundo/Jugador").position
 	randomize()
@@ -99,5 +89,5 @@ func generateFromXML(ruta):
 		for k in range(0,len(data[i])-1):
 			data[i][k] = data[i][k].to_float()
 			
-	
+	#print(data[1])
 	pass
