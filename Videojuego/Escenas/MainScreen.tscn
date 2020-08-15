@@ -69,24 +69,25 @@ custom_constants/separation = 35
 alignment = 1
 
 [node name="BotonNP" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 3 )]
-margin_top = 55.0
+margin_top = 60.0
 margin_right = 587.0
-margin_bottom = 95.0
+margin_bottom = 100.0
 
 [node name="BotonOpciones" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 4 )]
-margin_top = 130.0
+margin_top = 135.0
 margin_right = 587.0
-margin_bottom = 170.0
+margin_bottom = 175.0
 
 [node name="BotonScores" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 8 )]
-margin_top = 205.0
+margin_top = 210.0
 margin_right = 587.0
-margin_bottom = 255.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 360, 40 )
 
 [node name="BotonAcercaDe" parent="Menu/HBoxContainer/Botones" instance=ExtResource( 5 )]
-margin_top = 290.0
+margin_top = 285.0
 margin_right = 587.0
-margin_bottom = 340.0
+margin_bottom = 335.0
 rect_min_size = Vector2( 360, 50 )
 
 [node name="TextureRect" type="TextureRect" parent="Menu/HBoxContainer"]

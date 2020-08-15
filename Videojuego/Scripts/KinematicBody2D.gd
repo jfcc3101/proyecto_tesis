@@ -2,6 +2,8 @@ extends Area2D
 
 const ACELERACION = 15
 const VELOCIDAD_MAX  = 250
+const POTENCIA_MIN_AUDIO = 0.5
+const ENEMIGOS_MAX_CARRIL = 1
 export var mov = Vector2()
 var pos_izq = Vector2()
 var pos_der = Vector2()
@@ -142,7 +144,8 @@ func TimerVelTimeout():
 		crear_estrella()
 	
 	if contArchivo == len(spawner.data[2])-2:
-		#Si se llega al final del archivo, aparece el mensaje de final y los botones
+		#Si se llega al final del archivo,
+		#aparece el mensaje de final y los botones
 		mov.y = 0
 		timer.stop()
 		player.stop()
@@ -152,10 +155,11 @@ func TimerVelTimeout():
 		$Camera2D/HUD/CanvasHUD/BotonMenu.set_visible(true)
 		$Camera2D/HUD/CanvasHUD/BotonMenu.set_disabled(false)
 	mov.y = -get_node("/root/Mundo/EnemySpawner").data[2][contArchivo]
+	spawner.actualizar_tiempos(-mov.y)
 	if spawner.data[2][contArchivo] - tempoM < -10:
 		var difNeg = -int((spawner.data[2][contArchivo] - tempoM)/10)
 		#print(difNeg)
-		$ParallaxBackground/ParallaxLayer/Fondo.self_modulate = Color(0,0,difNeg*0.1,1)
+		$ParallaxBackground/ParallaxLayer/Fondo.self_modulate = Color(0,difNeg*0.1,0,1)
 	elif spawner.data[2][contArchivo] - tempoM > 10:
 		var difPos = int((spawner.data[2][contArchivo] - tempoM)/20)
 		#print(String(spawner.data[2][contArchivo] - tempoM))
@@ -182,43 +186,44 @@ func TimerVelTimeout():
 		
 	
 	randomize()
-	for i in range(rand_range(2,7)):
+	#for i in range(rand_range(2,7)):
+	for i in range(3):
 		#Crea entre 3 y 7 enemigos  a partir de la lista ordenada
-		if get_tree().get_nodes_in_group("enemigos").size() < 20:
-			if ordenados[i][1] == 0 and ordenados[i][0]>0.65 and spawner.contEnemigos[0] <= 2:
+		if get_tree().get_nodes_in_group("enemigos").size() < 12:
+			if ordenados[i][1] == 0 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[0] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-318,-281))
-			elif ordenados[i][1] == 1 and ordenados[i][0]>0.65 and spawner.contEnemigos[1] <= 2:
+			elif ordenados[i][1] == 1 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[1] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-248,-228))
-			elif ordenados[i][1] == 2 and ordenados[i][0]>0.65 and spawner.contEnemigos[2] <= 2:
+			elif ordenados[i][1] == 2 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[2] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-195,-175))
-			elif ordenados[i][1] == 3 and ordenados[i][0]>0.65 and spawner.contEnemigos[3] <= 2:
+			elif ordenados[i][1] == 3 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[3] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-142,-122))
-			elif ordenados[i][1] == 4 and ordenados[i][0]>0.65 and spawner.contEnemigos[4] <= 2:
+			elif ordenados[i][1] == 4 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[4] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-89,-69))
-			elif ordenados[i][1] == 5 and ordenados[i][0]>0.65 and spawner.contEnemigos[5] <= 2:
+			elif ordenados[i][1] == 5 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[5] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(-36,-16))
-			elif ordenados[i][1] == 6 and ordenados[i][0]>0.65 and spawner.contEnemigos[6] <= 2:
+			elif ordenados[i][1] == 6 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[6] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(17,37))
-			elif ordenados[i][1] == 7 and ordenados[i][0]>0.65 and spawner.contEnemigos[7] <= 2:
+			elif ordenados[i][1] == 7 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[7] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(70,90))
-			elif ordenados[i][1] == 8 and ordenados[i][0]>0.65 and spawner.contEnemigos[8] <= 2:
+			elif ordenados[i][1] == 8 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[8] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(123,143))
-			elif ordenados[i][1] == 9 and ordenados[i][0]>0.65 and spawner.contEnemigos[9] <= 2:
+			elif ordenados[i][1] == 9 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[9] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(176,196))
-			elif ordenados[i][1] == 10 and ordenados[i][0]>0.65 and spawner.contEnemigos[10] <= 2:
+			elif ordenados[i][1] == 10 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[10] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(229,249))
-			elif ordenados[i][1] == 11 and ordenados[i][0]>0.65 and spawner.contEnemigos[11] <= 2:
+			elif ordenados[i][1] == 11 and ordenados[i][0]>POTENCIA_MIN_AUDIO and spawner.contEnemigos[11] < ENEMIGOS_MAX_CARRIL:
 				randomize()
 				spawner.spawnAleatorio(rand_range(282,318))
 			else:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Notion.ogg-17b347e23a4bb8f386ccf3a7a0bc5746.oggstr"
+
+[deps]
+
+source_file="res://Audios/Notion.ogg"
+dest_files=[ "res://.import/Notion.ogg-17b347e23a4bb8f386ccf3a7a0bc5746.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

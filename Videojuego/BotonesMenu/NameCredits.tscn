@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Fuentes/pixel.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/r.png" type="Texture" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[node name="Logo" type="HBoxContainer"]
+margin_right = 975.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nombre" type="Label" parent="."]
+margin_left = 243.0
+margin_top = 5.0
+margin_right = 607.0
+margin_bottom = 90.0
+size_flags_horizontal = 5
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 1, 0.0156863, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.486275, 0, 1 )
+text = "Creditos"
+
+[node name="SeparatorNL" type="VSeparator" parent="."]
+margin_left = 611.0
+margin_right = 631.0
+margin_bottom = 96.0
+custom_styles/separator = SubResource( 2 )
+custom_constants/separation = 20
+
+[node name="LogoImage" type="TextureRect" parent="."]
+margin_left = 635.0
+margin_right = 731.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 96, 96 )
+rect_clip_content = true
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1

@@ -9,12 +9,12 @@ var canciones = list_files_in_directory("res://Audios")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
 	for i in canciones:
 		print(i)
-		$Tracklist.add_item(i)
-	$AnimatedSprite.set_visible(false)
-	$Analizando.set_visible(false)
+		$VBoxContainer/Tracklist.add_item(i)
+	#$AnimatedSprite.set_visible(false)
+	#$Analizando.set_visible(false)
 	pass # Replace with function body.
 
 func list_files_in_directory(path):
@@ -37,18 +37,8 @@ func list_files_in_directory(path):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not $Tracklist.is_anything_selected():
-		$BotonEmpezar.disabled = true
-	else:
-		$BotonEmpezar.disabled =false
-
-	#if $BotonEmpezar.pressed:
-		
-			
+	if not $VBoxContainer/Tracklist.is_anything_selected():
 		pass
-	#if $BotonVolver.pressed:
-	#	get_tree().change_scene("res://Escenas/MainScreen.tscn")
-	pass
 	
 
 static func write_file(file_name, string):
@@ -59,17 +49,17 @@ static func write_file(file_name, string):
 
 
 func _on_BotonEmpezar_pressed():
-	$AnimatedSprite.set_visible(true)
-	$AnimatedSprite.play("default")
-	$BotonEmpezar.disabled = true
-	$BotonVolver.disabled = true
-	if $Tracklist.is_anything_selected():
-		print("Presionado")
-		print(canciones[$Tracklist.get_selected_items()[0]])
-		var mp3 = canciones[$Tracklist.get_selected_items()[0]]
+	$WindowDialog.show()
+	#$AnimatedSprite.set_visible(true)
+	#$AnimatedSprite.play("default")
+	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
+	$VBoxContainer/HBoxContainer/BotonVolver.disabled = true
+	if $VBoxContainer/Tracklist.is_anything_selected():
+		print(canciones[$VBoxContainer/Tracklist.get_selected_items()[0]])
+		var mp3 = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]]
 		Global.actual = mp3
-		var ogg = canciones[$Tracklist.get_selected_items()[0]].replace(".mp3",".ogg")
-		var xml = canciones[$Tracklist.get_selected_items()[0]].replace(".mp3",".xml")
+		var ogg = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".ogg")
+		var xml = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".xml")
 		var checkogg = File.new()
 		Global.actualogg = "res://Audios/"+ogg
 		var doOggExists = checkogg.file_exists(Global.actualogg)
@@ -83,8 +73,13 @@ func _on_BotonEmpezar_pressed():
 			#Se pone el nombre de la cancion en el .txt y ejecuta .exe con el análisis
 			print("Hay que hacer análisis")
 			write_file("toAnalyze.txt","Audios\\"+mp3)
-			OS.execute("feature_ext.exe",[],true)
+			OS.execute("feature_ext.exe",[],false)
+			
+			while not doOggExists and not doXmlExists:
+				doOggExists = checkogg.file_exists(Global.actualogg)
+				doXmlExists = checkxml.file_exists(Global.actualxml)
 			print("Análisis finalizado")
+			
 			get_tree().change_scene("res://Escenas/Mundo.tscn")
 		else:
 			get_tree().change_scene("res://Escenas/Mundo.tscn")
@@ -92,4 +87,14 @@ func _on_BotonEmpezar_pressed():
 
 func _on_BotonVolver_pressed():
 	get_tree().change_scene("res://Escenas/MainScreen.tscn")
+	pass # Replace with function body.
+
+
+func _on_Button_pressed():
+	$WindowDialog.show()
+	pass # Replace with function body.
+
+
+func _on_Tracklist_item_selected(index):
+	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = false
 	pass # Replace with function body.

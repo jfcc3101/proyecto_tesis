@@ -12,4 +12,64 @@ script = ExtResource( 2 )
 
 [node name="Container" type="Node" parent="EnemySpawner"]
 
-[node name="Timer" type="Timer" parent="EnemySpawner/Container"]
+[node name="Timers" type="Node" parent="EnemySpawner"]
+
+[node name="TimerB" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerAsus" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerA" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerGsus" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerG" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerFsus" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerF" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerE" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerDsus" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerD" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerCsus" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="TimerC" type="Timer" parent="EnemySpawner/Timers"]
+wait_time = 0.25
+one_shot = true
+[connection signal="timeout" from="EnemySpawner/Timers/TimerB" to="EnemySpawner" method="_on_TimerB_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerAsus" to="EnemySpawner" method="_on_TimerAsus_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerA" to="EnemySpawner" method="_on_TimerA_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerGsus" to="EnemySpawner" method="_on_TimerGsus_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerG" to="EnemySpawner" method="_on_TimerG_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerFsus" to="EnemySpawner" method="_on_TimerFsus_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerF" to="EnemySpawner" method="_on_TimerF_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerE" to="EnemySpawner" method="_on_TimerE_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerDsus" to="EnemySpawner" method="_on_TimerDsus_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerD" to="EnemySpawner" method="_on_TimerD_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerCsus" to="EnemySpawner" method="_on_TimerCsus_timeout"]
+[connection signal="timeout" from="EnemySpawner/Timers/TimerC" to="EnemySpawner" method="_on_TimerC_timeout"]

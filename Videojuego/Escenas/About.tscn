@@ -90,4 +90,5 @@ texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Botones/BotonComoJugar" to="." method="_on_BotonComoJugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Botones/BotonCreditos" to="." method="_on_BotonCreditos_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Botones/BotonVolver" to="." method="_on_BotonVolver_pressed"]

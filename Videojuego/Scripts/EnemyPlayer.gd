@@ -5,16 +5,20 @@ export var mov = Vector2()
 export var escudo = 3 setget set_escudo
 var carril = 0
 onready var spawner = get_node("/root/Mundo/EnemySpawner")
+onready var timers = get_node("/root/Mundo/EnemySpawner/Timers")
 
 func _ready():
 	var lado = randi()%10+1
 	set_process(true)
 	carril_inicio()
+	#Se define hacia qué costado se comienza a mover
 	if lado < 5:
 		self.mov.x = 50
 	else:
 		self.mov.x = -50
 	add_to_group("enemigos")
+	spawner.allowEnemigos[carril] = 0
+	timers.get_child(carril).start()
 	pass
 
 
@@ -43,9 +47,9 @@ func set_escudo(valor):
 		queue_free()
 
 func on_area_enter(otro):
-	if otro.is_in_group("enemigos") and position.y<get_node("/root/Mundo/Jugador/Camera2D").get_camera_position().y-300:
-		borrarDeLista()
-		queue_free()
+	#if otro.is_in_group("enemigos") and position.y<get_node("/root/Mundo/Jugador/Camera2D").get_camera_position().y-300:
+		#borrarDeLista()
+		#queue_free()
 		pass
 
 func borrarDeLista():
@@ -64,3 +68,4 @@ func carril_inicio():
 	elif position.x > 160 and position.x < 212: carril = 9
 	elif position.x > 213 and position.x < 265: carril = 10
 	elif position.x > 266 and position.x < 318: carril = 11
+	

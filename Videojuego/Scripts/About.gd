@@ -24,3 +24,8 @@ func _on_BotonVolver_pressed():
 func _on_BotonComoJugar_pressed():
 	get_tree().change_scene("res://Escenas/How2Play.tscn")
 	pass # Replace with function body.
+
+
+func _on_BotonCreditos_pressed():
+	get_tree().change_scene("res://Escenas/Credits.tscn")
+	pass # Replace with function body.

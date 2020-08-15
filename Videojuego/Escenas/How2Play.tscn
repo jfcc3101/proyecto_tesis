@@ -180,6 +180,7 @@ align = 2
 position = Vector2( 110, -15 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 4 )
+frame = 3
 playing = true
 centered = false
 
@@ -216,7 +217,7 @@ align = 2
 position = Vector2( 110, -15 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 5 )
-frame = 3
+frame = 2
 playing = true
 centered = false
 

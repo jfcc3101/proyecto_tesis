@@ -6,6 +6,7 @@ const enemyPlayer = preload("res://Escenas/EnemyPlayer.tscn")
 var parser = XMLParser.new()
 var data =  Array()
 var contEnemigos = [0,0,0,0,0,0,0,0,0,0,0,0]
+var allowEnemigos = [1,1,1,1,1,1,1,1,1,1,1,1]
 #var posCamara = Vector2()
 #var posJugador = Vector2()
 
@@ -48,18 +49,42 @@ func spawnMPlayer(posX):
 	
 func spawnAleatorio(posX):
 	
-	if posX > -318 and posX < -265: contEnemigos[0] = contEnemigos[0]+1
-	elif posX > -264 and posX < -212: contEnemigos[1] = contEnemigos[1]+1
-	elif posX > -211 and posX < -159: contEnemigos[2] = contEnemigos[2]+1
-	elif posX > -158 and posX < -106: contEnemigos[3] = contEnemigos[3]+1
-	elif posX > -105 and posX < -53: contEnemigos[4] = contEnemigos[4]+1
-	elif posX > -52 and posX < 0: contEnemigos[5] = contEnemigos[5]+1
-	elif posX > 1 and posX < 53: contEnemigos[6] = contEnemigos[6]+1
-	elif posX > 54 and posX < 106: contEnemigos[7] = contEnemigos[7]+1
-	elif posX > 107 and posX < 159: contEnemigos[8] = contEnemigos[8]+1
-	elif posX > 160 and posX < 212: contEnemigos[9] = contEnemigos[9]+1
-	elif posX > 213 and posX < 265: contEnemigos[10] = contEnemigos[10]+1
-	elif posX > 266 and posX < 318: contEnemigos[11] = contEnemigos[11]+1
+	if posX > -318 and posX < -265 and allowEnemigos[0] == 1:
+		contEnemigos[0] = contEnemigos[0]+1
+		allowEnemigos[0] = 0
+	elif posX > -264 and posX < -212 and allowEnemigos[1] == 1:
+		contEnemigos[1] = contEnemigos[1]+1
+		allowEnemigos[1] = 0
+	elif posX > -211 and posX < -159 and allowEnemigos[2] == 1:
+		contEnemigos[2] = contEnemigos[2]+1
+		allowEnemigos[2] = 0
+	elif posX > -158 and posX < -106 and allowEnemigos[3] == 1:
+		contEnemigos[3] = contEnemigos[3]+1
+		allowEnemigos[3] = 0
+	elif posX > -105 and posX < -53 and allowEnemigos[4] == 1:
+		contEnemigos[4] = contEnemigos[4]+1
+		allowEnemigos[4] = 0
+	elif posX > -52 and posX < 0 and allowEnemigos[5] == 1:
+		contEnemigos[5] = contEnemigos[5]+1
+		allowEnemigos[5] = 0
+	elif posX > 1 and posX < 53 and allowEnemigos[6] == 1:
+		contEnemigos[6] = contEnemigos[6]+1
+		allowEnemigos[6] = 0
+	elif posX > 54 and posX < 106 and allowEnemigos[7] == 1:
+		contEnemigos[7] = contEnemigos[7]+1
+		allowEnemigos[7] = 0
+	elif posX > 107 and posX < 159 and allowEnemigos[8] == 1:
+		contEnemigos[8] = contEnemigos[8]+1
+		allowEnemigos[8] = 0
+	elif posX > 160 and posX < 212 and allowEnemigos[9] == 1:
+		contEnemigos[9] = contEnemigos[9]+1
+		allowEnemigos[9] = 0
+	elif posX > 213 and posX < 265 and allowEnemigos[10] == 1:
+		contEnemigos[10] = contEnemigos[10]+1
+		allowEnemigos[10] = 0
+	elif posX > 266 and posX < 318 and allowEnemigos[11] == 1:
+		contEnemigos[11] = contEnemigos[11]+1
+		allowEnemigos[11] = 0
 	else: pass
 	
 	randomize()
@@ -91,3 +116,62 @@ func generateFromXML(ruta):
 			
 	#print(data[1])
 	pass
+
+"""Cuando se acaba el cooldown de
+ 0.25 segundos del carril correspondiente
+ se permite la creación de un nuevo enemigo"""
+
+func _on_TimerA_timeout():
+	allowEnemigos[2] = 1
+	pass # Replace with function body.
+
+func _on_TimerAsus_timeout():
+	allowEnemigos[1] = 1
+	pass # Replace with function body.
+
+func _on_TimerB_timeout():
+	allowEnemigos[0] = 1
+	pass # Replace with function body.
+
+func _on_TimerC_timeout():
+	allowEnemigos[11] = 1
+	pass # Replace with function body.
+
+func _on_TimerCsus_timeout():
+	allowEnemigos[10] = 1
+	pass # Replace with function body.
+
+func _on_TimerD_timeout():
+	allowEnemigos[9] = 1
+	pass # Replace with function body.
+
+func _on_TimerDsus_timeout():
+	allowEnemigos[8] = 1
+	pass # Replace with function body.
+
+func _on_TimerE_timeout():
+	allowEnemigos[7] = 1
+	pass # Replace with function body.
+
+func _on_TimerF_timeout():
+	allowEnemigos[6] = 1
+	pass # Replace with function body.
+
+func _on_TimerFsus_timeout():
+	allowEnemigos[5] = 1
+	pass # Replace with function body.
+
+func _on_TimerG_timeout():
+	allowEnemigos[4] = 1
+	pass # Replace with function body.
+
+func _on_TimerGsus_timeout():
+	allowEnemigos[3] = 1
+	pass # Replace with function body.
+
+func actualizar_tiempos(bps):
+	var cooldown = 60/(2*bps)
+	for i in $Timers.get_children():
+		i.set_wait_time(cooldown)
+	pass
+	
