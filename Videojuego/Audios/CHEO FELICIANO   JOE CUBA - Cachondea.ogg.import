@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/CHEO FELICIANO   JOE CUBA - Cachondea.ogg-6239e093e41377886b53b458050a2896.oggstr"
+
+[deps]
+
+source_file="res://Audios/CHEO FELICIANO   JOE CUBA - Cachondea.ogg"
+dest_files=[ "res://.import/CHEO FELICIANO   JOE CUBA - Cachondea.ogg-6239e093e41377886b53b458050a2896.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

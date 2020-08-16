@@ -1,10 +1,7 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var canciones = list_files_in_directory("res://Audios")
+var canciones = list_files_in_directory("Audios")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -50,10 +47,8 @@ static func write_file(file_name, string):
 
 func _on_BotonEmpezar_pressed():
 	$WindowDialog.show()
-	#$AnimatedSprite.set_visible(true)
-	#$AnimatedSprite.play("default")
-	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
-	$VBoxContainer/HBoxContainer/BotonVolver.disabled = true
+	#$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
+	#$VBoxContainer/HBoxContainer/BotonVolver.disabled = true
 	if $VBoxContainer/Tracklist.is_anything_selected():
 		print(canciones[$VBoxContainer/Tracklist.get_selected_items()[0]])
 		var mp3 = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]]
@@ -61,11 +56,11 @@ func _on_BotonEmpezar_pressed():
 		var ogg = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".ogg")
 		var xml = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".xml")
 		var checkogg = File.new()
-		Global.actualogg = "res://Audios/"+ogg
+		Global.actualogg = "Audios/"+ogg
 		var doOggExists = checkogg.file_exists(Global.actualogg)
 		
 		var checkxml = File.new()
-		Global.actualxml = "res://Audios/"+xml
+		Global.actualxml = "Audios/"+xml
 		var doXmlExists = checkxml.file_exists(Global.actualxml)
 		
 		if not doOggExists or not doXmlExists:
@@ -73,11 +68,7 @@ func _on_BotonEmpezar_pressed():
 			#Se pone el nombre de la cancion en el .txt y ejecuta .exe con el análisis
 			print("Hay que hacer análisis")
 			write_file("toAnalyze.txt","Audios\\"+mp3)
-			OS.execute("feature_ext.exe",[],false)
-			
-			while not doOggExists and not doXmlExists:
-				doOggExists = checkogg.file_exists(Global.actualogg)
-				doXmlExists = checkxml.file_exists(Global.actualxml)
+			OS.execute("feature_ext.exe",[],true)
 			print("Análisis finalizado")
 			
 			get_tree().change_scene("res://Escenas/Mundo.tscn")
@@ -97,4 +88,11 @@ func _on_Button_pressed():
 
 func _on_Tracklist_item_selected(index):
 	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = false
+	pass # Replace with function body.
+	
+
+
+func _on_WindowDialog_about_to_show():
+	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
+	$VBoxContainer/HBoxContainer/BotonVolver.disabled = true
 	pass # Replace with function body.

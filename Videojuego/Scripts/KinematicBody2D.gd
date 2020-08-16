@@ -60,14 +60,24 @@ func _physics_process(delta):
 	translate(mov*delta)
 	#mov.y = -110
 	if Input.is_action_pressed("ui_right"):
-		if position.x < -330 or position.x > 330: mov.x *= -1
+		if position.x < -330 or position.x > 330:
+			mov.x *= -1
+			if position.x < -330:
+				position.x = -330
+			elif position.x > 330:
+				position.x = 330
 		else: mov.x = min(mov.x+ACELERACION,VELOCIDAD_MAX)
 		$AnimatedSprite.play("right")
 		if Input.is_action_just_pressed("ui_accept"):
 			crear_laser(pos_izq)
 			crear_laser(pos_der)
 	elif Input.is_action_pressed("ui_left"):
-		if position.x < -330 or position.x > 330: mov.x *= -1
+		if position.x < -330 or position.x > 330:
+			mov.x *= -1
+			if position.x < -330:
+				position.x = -330
+			elif position.x > 330:
+				position.x = 330
 		else: mov.x = max(mov.x-ACELERACION,-VELOCIDAD_MAX)
 		$AnimatedSprite.play("left")
 		if Input.is_action_just_pressed("ui_accept"):
@@ -77,7 +87,12 @@ func _physics_process(delta):
 		crear_laser(pos_izq)
 		crear_laser(pos_der)
 		pass
-	elif position.x <= -330 or position.x >= 330: mov.x *= -1
+	elif position.x <= -330 or position.x >= 330:
+			mov.x *= -1
+			if position.x < -330:
+				position.x = -330
+			elif position.x > 330:
+				position.x = 330
 	else:
 		$AnimatedSprite.play("normal")
 		#$AnimatedSprite.self_modulate = Color(1,1,1)
