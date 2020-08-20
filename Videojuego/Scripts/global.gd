@@ -10,6 +10,8 @@ var actualogg = ""
 var actualxml = ""
 var dificultad = ""
 var MaxEnemy = 12
+var promedios = [0,0,0,0,0,0,0,0,0,0,0,0]
+var promedio = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

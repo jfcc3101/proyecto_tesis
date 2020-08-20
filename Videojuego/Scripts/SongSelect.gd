@@ -33,7 +33,7 @@ func list_files_in_directory(path):
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if not $VBoxContainer/Tracklist.is_anything_selected():
 		pass
 	
@@ -45,35 +45,7 @@ static func write_file(file_name, string):
 	file.close()
 
 
-func _on_BotonEmpezar_pressed():
-	$WindowDialog.show()
-	#$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
-	#$VBoxContainer/HBoxContainer/BotonVolver.disabled = true
-	if $VBoxContainer/Tracklist.is_anything_selected():
-		print(canciones[$VBoxContainer/Tracklist.get_selected_items()[0]])
-		var mp3 = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]]
-		Global.actual = mp3
-		var ogg = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".ogg")
-		var xml = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".xml")
-		var checkogg = File.new()
-		Global.actualogg = "Audios/"+ogg
-		var doOggExists = checkogg.file_exists(Global.actualogg)
-		
-		var checkxml = File.new()
-		Global.actualxml = "Audios/"+xml
-		var doXmlExists = checkxml.file_exists(Global.actualxml)
-		
-		if not doOggExists or not doXmlExists:
-			
-			#Se pone el nombre de la cancion en el .txt y ejecuta .exe con el análisis
-			print("Hay que hacer análisis")
-			write_file("toAnalyze.txt","Audios\\"+mp3)
-			OS.execute("feature_ext.exe",[],true)
-			print("Análisis finalizado")
-			
-			get_tree().change_scene("res://Escenas/Mundo.tscn")
-		else:
-			get_tree().change_scene("res://Escenas/Mundo.tscn")
+
 
 
 func _on_BotonVolver_pressed():
@@ -95,4 +67,43 @@ func _on_Tracklist_item_selected(index):
 func _on_WindowDialog_about_to_show():
 	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
 	$VBoxContainer/HBoxContainer/BotonVolver.disabled = true
+	pass # Replace with function body.
+
+
+func _on_BotonEmpezar_button_down():
+	pass # Replace with function body.
+
+
+func _on_BotonEmpezar_button_up():
+	
+	$WindowDialog.show()
+	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
+	$VBoxContainer/HBoxContainer/BotonVolver.disabled = true
+	if $VBoxContainer/Tracklist.is_anything_selected():
+		print(canciones[$VBoxContainer/Tracklist.get_selected_items()[0]])
+		var mp3 = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]]
+		Global.actual = mp3
+		var ogg = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".ogg")
+		var xml = canciones[$VBoxContainer/Tracklist.get_selected_items()[0]].replace(".mp3",".xml")
+		var checkogg = File.new()
+		Global.actualogg = "Audios/"+ogg
+		var doOggExists = checkogg.file_exists(Global.actualogg)
+		
+		var checkxml = File.new()
+		Global.actualxml = "Audios/"+xml
+		var doXmlExists = checkxml.file_exists(Global.actualxml)
+		
+		if not doOggExists or not doXmlExists:
+			
+			#Se pone el nombre de la cancion en el .txt y ejecuta .exe con el análisis
+			print("Hay que hacer análisis")
+			OS.alert("Se realizará el análisis de la pista, esto puede tomar un tiempo", "Análisis de canción")
+			write_file("toAnalyze.txt","Audios\\"+mp3)
+			OS.execute("feature_ext.exe",[],true)
+			print("Análisis finalizado")
+			
+			get_tree().change_scene("res://Escenas/Mundo.tscn")
+		else:
+			get_tree().change_scene("res://Escenas/Mundo.tscn")
+	
 	pass # Replace with function body.

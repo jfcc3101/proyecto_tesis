@@ -2,7 +2,6 @@ extends Area2D
 
 const ACELERACION = 15
 const VELOCIDAD_MAX  = 250
-const POTENCIA_MIN_AUDIO = 0.5
 const ENEMIGOS_MAX_CARRIL = 1
 export var mov = Vector2()
 var pos_izq = Vector2()
@@ -15,6 +14,7 @@ onready var spawner = get_node("/root/Mundo/EnemySpawner")
 onready var timer = get_node("TimerVel")
 onready var timersafe = get_node("TimerSafe")
 onready var player = AudioStreamPlayer.new()
+var POTENCIA_MIN_AUDIO = 0.5
 var tempoM = 0.0
 var contArchivo = 0
 var actualScore = 0
@@ -45,6 +45,10 @@ func _ready():
 	connect("area_entered",self,"on_area_enter")
 	
 	spawner.generateFromXML(Global.actualxml)
+	spawner.calcular_media_chroma()
+	print(Global.promedios)
+	print(Global.promedio)
+	POTENCIA_MIN_AUDIO = Global.promedio
 	get_node("Camera2D/HUD/CanvasHUD/LabelNombrePista").set_text(Global.actual)
 	
 	pass

@@ -72,7 +72,6 @@ __meta__ = {
 position = Vector2( 368.035, 148.514 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -143,5 +142,6 @@ text = "Mostrar Popup"
 [connection signal="about_to_show" from="WindowDialog" to="." method="_on_WindowDialog_about_to_show"]
 [connection signal="item_selected" from="VBoxContainer/Tracklist" to="." method="_on_Tracklist_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BotonVolver" to="." method="_on_BotonVolver_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/BotonEmpezar" to="." method="_on_BotonEmpezar_pressed"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/BotonEmpezar" to="." method="_on_BotonEmpezar_button_down"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/BotonEmpezar" to="." method="_on_BotonEmpezar_button_up"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]

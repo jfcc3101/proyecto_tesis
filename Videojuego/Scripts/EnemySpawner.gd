@@ -118,7 +118,7 @@ func generateFromXML(ruta):
 	pass
 
 """Cuando se acaba el cooldown de
- 0.25 segundos del carril correspondiente
+ 60/(2*bps) segundos del carril correspondiente
  se permite la creación de un nuevo enemigo"""
 
 func _on_TimerA_timeout():
@@ -175,3 +175,16 @@ func actualizar_tiempos(bps):
 		i.set_wait_time(cooldown)
 	pass
 	
+func calcular_media_chroma():
+	var promedios = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+	for i in range(12):
+		i = int(i)
+		for j in range(len(data[i+3])):
+			j=int(j)
+			promedios[i] += float(data[i+3][j])
+		promedios[i] = promedios[i]/data[i+3].size()
+	Global.promedios = promedios
+	for i in promedios:
+		Global.promedio +=i
+	Global.promedio = Global.promedio/12
+	pass

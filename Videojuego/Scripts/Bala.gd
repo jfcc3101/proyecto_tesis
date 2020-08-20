@@ -35,3 +35,8 @@ func on_area_enter(otro):
 		#get_node("/root/Mundo/Jugador").actualScore+=50
 		crear_flare()
 		queue_free()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+	pass # Replace with function body.

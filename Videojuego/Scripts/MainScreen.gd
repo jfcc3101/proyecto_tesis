@@ -17,14 +17,17 @@ func _ready():
 
 func _on_BotonNP_pressed():
 	get_tree().change_scene("res://Escenas/SongSelect.tscn")
+	queue_free()
 	pass # Replace with function body.
 
 
 func _on_BotonOpciones_pressed():
 	get_tree().change_scene("res://Escenas/OptionMenu.tscn")
+	queue_free()
 	pass # Replace with function body.
 
 
 func _on_BotonAcercaDe_pressed():
 	get_tree().change_scene("res://Escenas/About.tscn")
+	queue_free()
 	pass # Replace with function body.
