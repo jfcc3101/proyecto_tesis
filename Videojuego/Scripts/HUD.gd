@@ -37,3 +37,28 @@ func _process(delta):
 		get_tree().change_scene("res://Escenas/Mundo.tscn")
 	get_node("CanvasHUD/LabelScore").set_text("SCORE:"+str(get_node("/root/Mundo/Jugador").actualScore))
 	pass
+
+
+func _on_ScoreNombre_text_changed():
+	if $CanvasHUD/LabelFInPartida/ScoreNombre.get_text().length() >= 4:
+		$CanvasHUD/LabelFInPartida/ScoreNombre.readonly = true
+	pass # Replace with function body.
+
+func _input(event):
+	if $CanvasHUD/LabelFInPartida/ScoreNombre.readonly == true and Input.is_action_just_pressed("backspace"):
+		$CanvasHUD/LabelFInPartida/ScoreNombre.readonly = false
+
+
+func _on_BotonEnter_button_up():
+	if $CanvasHUD/LabelFInPartida/ScoreNombre.get_text() != "":
+		get_node("/root/Mundo/Jugador").guardar_record($CanvasHUD/LabelFInPartida/ScoreNombre.get_text())
+		$CanvasHUD/LabelFInPartida/ScoreNombre.set_visible(false)
+		$CanvasHUD/LabelFInPartida/BotonEnter.set_visible(false)
+		$CanvasHUD/LabelFInPartida/LabelJugador.set_visible(false)
+		$CanvasHUD/BotonRetry.set_visible(true)
+		$CanvasHUD/BotonRetry.set_disabled(false)
+		$CanvasHUD/BotonMenu.set_visible(true)
+		$CanvasHUD/BotonMenu.set_disabled(false)
+	else:
+		OS.alert("Por favor ingresa un nombre para guardar tu record", "Error al guardar record")
+	pass # Replace with function body.

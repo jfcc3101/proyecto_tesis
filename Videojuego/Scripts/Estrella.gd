@@ -1,16 +1,24 @@
 extends AnimatedSprite
 
-
+var borrable
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var borrable = false
 	self.play("default")
 	pass # Replace with function body.
 
 
 func _process(delta):
-	var posCamara = get_node("/root/Mundo/Jugador/Camera2D").get_camera_position()
-	if position.y>posCamara.y+100:
-		#print("pos_estrella: "+str(position.y)+"pos_cámara: "+str(posCamara.y))
-		queue_free()
 	pass
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	borrable = true
+	pass # Replace with function body.
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	if borrable == true:
+		queue_free()
+	pass # Replace with function body.

@@ -10,7 +10,7 @@ func _ready():
 	fxplayer.set_bus("SFX")
 	self.add_child(fxplayer)
 	fxplayer.set_volume_db(1)
-	fxplayer.stream = load("res://AudioFX/Shot1.wav")
+	fxplayer.stream = load("res://AudioFX/Shot2.wav")
 	fxplayer.autoplay = false
 	fxplayer.play()
 	connect("area_entered",self,"on_area_enter")

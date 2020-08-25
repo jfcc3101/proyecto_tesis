@@ -13,6 +13,7 @@ var escudo = 3 setget set_escudo
 onready var spawner = get_node("/root/Mundo/EnemySpawner")
 onready var timer = get_node("TimerVel")
 onready var timersafe = get_node("TimerSafe")
+onready var timerfin = get_node("TimerFinal")
 onready var player = AudioStreamPlayer.new()
 var POTENCIA_MIN_AUDIO = 0.5
 var tempoM = 0.0
@@ -159,7 +160,7 @@ func TimerVelTimeout():
 	#Se crean estrellas de manera aleatoria
 	randomize()
 	var randomEstrella = rand_range(0,100)
-	if(randomEstrella < 50):
+	if(randomEstrella < 30):
 		crear_estrella()
 	
 	if contArchivo == len(spawner.data[2])-2:
@@ -167,12 +168,7 @@ func TimerVelTimeout():
 		#aparece el mensaje de final y los botones
 		mov.y = 0
 		timer.stop()
-		player.stop()
-		$Camera2D/HUD/CanvasHUD/LabelFInPartida.set_visible(true)
-		$Camera2D/HUD/CanvasHUD/BotonRetry.set_visible(true)
-		$Camera2D/HUD/CanvasHUD/BotonRetry.set_disabled(false)
-		$Camera2D/HUD/CanvasHUD/BotonMenu.set_visible(true)
-		$Camera2D/HUD/CanvasHUD/BotonMenu.set_disabled(false)
+		timerfin.start()
 	mov.y = -get_node("/root/Mundo/EnemySpawner").data[2][contArchivo]
 	spawner.actualizar_tiempos(-mov.y)
 	if spawner.data[2][contArchivo] - tempoM < -10:
@@ -258,3 +254,38 @@ func _on_TimerSafe_timeout():
 	print("Colisión activada")
 	pass # Replace with function body.
 	
+func guardar_record(jugador):
+	if self.escudo>0:
+		var ruta = "records.json"
+		var datos = {
+			Global.actual: [actualScore,jugador]
+		}
+	
+		var file = File.new()
+		if file.open(ruta, File.WRITE) != 0:
+			print("Error opening file")
+			return
+			
+		#Guarda el diccionario en el archivo json
+		file.store_line(to_json(datos))
+		file.close()
+		pass
+	pass
+
+
+func _on_TimerFinal_timeout():
+	if escudo > 0:
+		$Camera2D/HUD/CanvasHUD/LabelFInPartida.set_visible(true)
+		$Camera2D/HUD/CanvasHUD/LabelFInPartida/LabelScoreFin.set_text("TU PUNTAJE: " + str(actualScore))
+		var puntaje = Global.hiScores.get(Global.actual)
+		print("Actual: ", Global.actual, " puntaje: ", puntaje[0])
+		if Global.hiScores.has(Global.actual):
+			if Global.hiScores.get(Global.actual)[0] >= actualScore:
+				$Camera2D/HUD/CanvasHUD/LabelFInPartida/ScoreNombre.set_visible(false)
+				$Camera2D/HUD/CanvasHUD/LabelFInPartida/BotonEnter.set_visible(false)
+				$Camera2D/HUD/CanvasHUD/LabelFInPartida/LabelJugador.set_visible(false)
+				$Camera2D/HUD/CanvasHUD/BotonRetry.set_visible(true)
+				$Camera2D/HUD/CanvasHUD/BotonRetry.set_disabled(false)
+				$Camera2D/HUD/CanvasHUD/BotonMenu.set_visible(true)
+				$Camera2D/HUD/CanvasHUD/BotonMenu.set_disabled(false)
+	pass # Replace with function body.

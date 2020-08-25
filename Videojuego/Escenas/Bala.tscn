@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-velocidad = Vector2( 0, -300 )
+velocidad = Vector2( 0, -600 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

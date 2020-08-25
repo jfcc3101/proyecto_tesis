@@ -96,5 +96,10 @@ wait_time = 0.022
 autostart = true
 
 [node name="TimerSafe" type="Timer" parent="."]
+
+[node name="TimerFinal" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 [connection signal="timeout" from="TimerVel" to="." method="TimerVelTimeout"]
 [connection signal="timeout" from="TimerSafe" to="." method="_on_TimerSafe_timeout"]
+[connection signal="timeout" from="TimerFinal" to="." method="_on_TimerFinal_timeout"]

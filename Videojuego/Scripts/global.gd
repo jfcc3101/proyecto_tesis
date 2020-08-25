@@ -12,6 +12,8 @@ var dificultad = ""
 var MaxEnemy = 12
 var promedios = [0,0,0,0,0,0,0,0,0,0,0,0]
 var promedio = 0
+var hiScoreActual = 0
+var hiScores = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
