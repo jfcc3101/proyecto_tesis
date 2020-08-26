@@ -98,4 +98,5 @@ texture = ExtResource( 6 )
 stretch_mode = 6
 [connection signal="pressed" from="Menu/HBoxContainer/Botones/BotonNP" to="." method="_on_BotonNP_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/Botones/BotonOpciones" to="." method="_on_BotonOpciones_pressed"]
+[connection signal="button_up" from="Menu/HBoxContainer/Botones/BotonScores" to="." method="_on_BotonScores_button_up"]
 [connection signal="pressed" from="Menu/HBoxContainer/Botones/BotonAcercaDe" to="." method="_on_BotonAcercaDe_pressed"]

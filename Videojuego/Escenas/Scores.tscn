@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://BotonesMenu/NameScores.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Scores.gd" type="Script" id=2]
+[ext_resource path="res://BotonesMenu/BotonVolverScores.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fuentes/PressStart2P-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 4 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.023
+anchor_top = 0.05
+anchor_right = 0.977
+anchor_bottom = 0.95
+margin_left = 0.448
+margin_top = 1.90735e-06
+margin_right = -936.448
+margin_bottom = -500.0
+rect_min_size = Vector2( 976, 540 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 976.0
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+margin_top = 100.0
+margin_right = 976.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 300 )
+mouse_filter = 2
+custom_fonts/font = SubResource( 1 )
+max_columns = 3
+same_column_width = true
+
+[node name="MenuButton" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 404.0
+margin_right = 976.0
+margin_bottom = 454.0
+[connection signal="button_up" from="VBoxContainer/MenuButton" to="." method="_on_MenuButton_button_up"]

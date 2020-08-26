@@ -22,7 +22,6 @@ var actualScore = 0
 
 func _ready():
 	#Reproducir la música
-	#var player = AudioStreamPlayer.new()
 	var snd_file=File.new()
 	snd_file.open(Global.actualogg, File.READ)
 	var stream=AudioStreamOGGVorbis.new()
@@ -30,14 +29,15 @@ func _ready():
 	player.stream=stream
 	snd_file.close()
 	self.add_child(player)
-	#player.stream = load(Global.actualogg)
-	#load_ogg(Global.actualogg)
+	#Asignar el BUS
 	player.set_bus("Music")
 	player.play()
 	player.autoplay = false
 	
+	#Establecer el tiempo de espera que hay entre dato y dato del archivo xml
 	timer.set_wait_time(0.0227272727272727)
 	timer.start()
+	#Establecer tiempo de espera cuando el jugador se estrella y se desactiva su area de colisión
 	timersafe.set_wait_time(1.8)
 	timersafe.set_one_shot(true)
 	
@@ -45,6 +45,7 @@ func _ready():
 	add_to_group("nave")
 	connect("area_entered",self,"on_area_enter")
 	
+	#Genera el arreglo con los datos leídos a partir del XML
 	spawner.generateFromXML(Global.actualxml)
 	spawner.calcular_media_chroma()
 	print(Global.promedios)
@@ -56,7 +57,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	#print($Camera2D.get_camera_position())
 		
 	pos_canones()
 	
@@ -255,30 +255,39 @@ func _on_TimerSafe_timeout():
 	pass # Replace with function body.
 	
 func guardar_record(jugador):
+	"""
+	Se guarda el record dentro del archivo records.json
+	De ser necesario se reemplaza el record antiguo con el nuevo
+	"""
 	if self.escudo>0:
 		var ruta = "records.json"
-		var datos = {
-			Global.actual: [actualScore,jugador]
-		}
-	
+		
+		if Global.hiScores.has(Global.actual):
+			Global.hiScores.erase(Global.actual)
+		Global.hiScores[Global.actual] = [actualScore,jugador]
+		
 		var file = File.new()
 		if file.open(ruta, File.WRITE) != 0:
 			print("Error opening file")
 			return
 			
 		#Guarda el diccionario en el archivo json
-		file.store_line(to_json(datos))
+		file.store_line(to_json(Global.hiScores))
 		file.close()
 		pass
 	pass
 
 
 func _on_TimerFinal_timeout():
+	"""
+	Espera un tiempo a que termine la última parte de la canción que
+	se cortaría debido a un corto delay que hay al leer los datos
+	"""
 	if escudo > 0:
 		$Camera2D/HUD/CanvasHUD/LabelFInPartida.set_visible(true)
 		$Camera2D/HUD/CanvasHUD/LabelFInPartida/LabelScoreFin.set_text("TU PUNTAJE: " + str(actualScore))
 		var puntaje = Global.hiScores.get(Global.actual)
-		print("Actual: ", Global.actual, " puntaje: ", puntaje[0])
+		#print("Actual: ", Global.actual, " puntaje: ", puntaje[0])
 		if Global.hiScores.has(Global.actual):
 			if Global.hiScores.get(Global.actual)[0] >= actualScore:
 				$Camera2D/HUD/CanvasHUD/LabelFInPartida/ScoreNombre.set_visible(false)

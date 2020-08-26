@@ -117,9 +117,9 @@ func generateFromXML(ruta):
 	#print(data[1])
 	pass
 
-"""Cuando se acaba el cooldown de
- 60/(2*bps) segundos del carril correspondiente
- se permite la creación de un nuevo enemigo"""
+"""Cada uno de los timers levanta una
+bandera después de pasado un tiempo
+para poder crear nuevos enemigos"""
 
 func _on_TimerA_timeout():
 	allowEnemigos[2] = 1
@@ -169,6 +169,10 @@ func _on_TimerGsus_timeout():
 	allowEnemigos[3] = 1
 	pass # Replace with function body.
 
+"""Cuando se acaba el cooldown de
+ 60/(2*bps) segundos del carril correspondiente
+ se permite la creación de un nuevo enemigo"""
+
 func actualizar_tiempos(bps):
 	var cooldown = 60/(2*bps)
 	for i in $Timers.get_children():
@@ -176,6 +180,7 @@ func actualizar_tiempos(bps):
 	pass
 	
 func calcular_media_chroma():
+#Función para calcular la media de los datos del chroma del total de la canción.
 	var promedios = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
 	for i in range(12):
 		i = int(i)

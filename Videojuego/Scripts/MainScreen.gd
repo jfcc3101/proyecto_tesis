@@ -49,3 +49,9 @@ func leer_scores():
 	#print(Global.hiScores)
 	file.close()
 	pass
+
+
+func _on_BotonScores_button_up():
+	get_tree().change_scene("res://Escenas/Scores.tscn")
+	queue_free()
+	pass # Replace with function body.
