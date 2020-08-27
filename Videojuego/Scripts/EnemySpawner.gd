@@ -170,11 +170,11 @@ func _on_TimerGsus_timeout():
 	pass # Replace with function body.
 
 """Cuando se acaba el cooldown de
- 60/(2*bps) segundos del carril correspondiente
+ 60/(2*bpm) segundos del carril correspondiente
  se permite la creación de un nuevo enemigo"""
 
-func actualizar_tiempos(bps):
-	var cooldown = 60/(2*bps)
+func actualizar_tiempos(bpm):
+	var cooldown = 60/(2*bpm)
 	for i in $Timers.get_children():
 		i.set_wait_time(cooldown)
 	pass
