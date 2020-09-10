@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Avicii - Hey Brother.ogg-e0dfa497c26e3042c5e5c59f49cb5e53.oggstr"
+
+[deps]
+
+source_file="res://Audios/Avicii - Hey Brother.ogg"
+dest_files=[ "res://.import/Avicii - Hey Brother.ogg-e0dfa497c26e3042c5e5c59f49cb5e53.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

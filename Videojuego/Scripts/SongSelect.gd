@@ -3,13 +3,14 @@ extends Control
 
 var canciones = list_files_in_directory("Audios")
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$VBoxContainer/HBoxContainer/BotonEmpezar.disabled = true
 	for i in canciones:
 		print(i)
 		$VBoxContainer/Tracklist.add_item(i)
+	limpiar_archivo()
+
 	#$AnimatedSprite.set_visible(false)
 	#$Analizando.set_visible(false)
 	pass # Replace with function body.
@@ -97,13 +98,23 @@ func _on_BotonEmpezar_button_up():
 			
 			#Se pone el nombre de la cancion en el .txt y ejecuta .exe con el análisis
 			print("Hay que hacer análisis")
-			OS.alert("Se realizará el análisis de la pista, esto puede tomar un tiempo", "Análisis de canción")
+			OS.alert("Se realizará el análisis de la pista, esto tomará un tiempo. \nEsto solo se hará una vez por pista \nNO CIERRES EL JUEGO", "Análisis de canción")
 			write_file("toAnalyze.txt","Audios\\"+mp3)
-			OS.execute("feature_ext.exe",[],true)
-			print("Análisis finalizado")
-			
+			OS.execute("feature_ext.exe",[],false)
+			while not doOggExists or not doXmlExists:
+				doXmlExists = checkxml.file_exists(Global.actualxml)
+				doOggExists = checkogg.file_exists(Global.actualogg)
+				$WindowDialog.show()
 			get_tree().change_scene("res://Escenas/Mundo.tscn")
 		else:
 			get_tree().change_scene("res://Escenas/Mundo.tscn")
 	
 	pass # Replace with function body.
+
+
+func limpiar_archivo():
+	var file = File.new()
+	file.open("toAnalyze.txt", File.WRITE)
+	file.store_string("")
+	file.close()
+	

@@ -135,6 +135,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 margin_left = 240.0
 margin_right = 345.0
 margin_bottom = 22.0
