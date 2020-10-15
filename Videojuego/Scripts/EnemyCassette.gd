@@ -4,6 +4,7 @@ const esc_explosion = preload("res://Escenas/Explosion.tscn")
 onready var spawner = get_node("/root/Mundo/EnemySpawner")
 onready var timers = get_node("/root/Mundo/EnemySpawner/Timers")
 var carril = 0
+var en_juego = false
 export var mov = Vector2()
 export var escudo = 1 setget set_escudo
 
@@ -19,14 +20,16 @@ func _ready():
 
 
 func _process(delta):
-	var posCamara = get_node("/root/Mundo/Jugador/Camera2D").get_camera_position()
 	translate(mov * delta)
-	#mov.y = -100
-	$AnimatedSprite.play("default")
-	if position.y >= posCamara.y+100:
+	
+	if $VisibilityNotifier2D.is_on_screen():
+		en_juego = true
+	
+	if not $VisibilityNotifier2D.is_on_screen() and en_juego:
 		borrarDeLista()
 		queue_free()
-	
+	$AnimatedSprite.play("default")
+
 func crear_explosion():
 	var explosion = esc_explosion.instance()
 	explosion.set_position(get_position())

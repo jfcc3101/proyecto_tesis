@@ -32,4 +32,7 @@ frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -32, -24, 64, 48 )
 [connection signal="area_entered" from="." to="." method="on_area_enter"]
