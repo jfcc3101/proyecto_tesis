@@ -1,5 +1,5 @@
 # proyecto_tesis
-#Proyecto: Generación procedural de elementos jugables inmersivos a partir de caracteristicas obtenidas de una pista de música
+# Proyecto: Generación procedural de elementos jugables inmersivos a partir de caracteristicas obtenidas de una pista de música
 
 ## Plataforma
 
@@ -9,7 +9,6 @@ _Este proyecto está construido para su funcionamiento en plataformas de escrito
 
 * [Godot Engine](https://godotengine.org/download/windows) Motor de juego usado en su última versión a la fecha 3.2.3
 * Python 3.7 usando [Anaconda](https://www.anaconda.com).
-* [ffmpeg](https://ffmpeg.org/download.html) Librería usada para conversión de archivos de audio.
 * [libROSA](https://librosa.org) Librería de Python usada para el análisis de las pistas de audio.
 
 ## Expotación a Windows 👾
@@ -34,7 +33,7 @@ _Este es un proyecto personal y académico y no tiene ningún fin comercial._
 
 ## Captura de pantalla del videojuego
 
-[ejemplo1](ScreenShots/test1.GIF)
-[ejemplo2](ScreenShots/test2.GIF)
+![ejemplo1](ScreenShots/test1.GIF)
+![ejemplo2](ScreenShots/test2.GIF)
 
 
