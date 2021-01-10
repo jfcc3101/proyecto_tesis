@@ -11,7 +11,7 @@ _Este proyecto está construido para su funcionamiento en plataformas de escrito
 * Python 3.7 usando [Anaconda](https://www.anaconda.com).
 * [libROSA](https://librosa.org) Librería de Python usada para el análisis de las pistas de audio.
 
-## Expotación a Windows 👾
+## Exportación a Windows 👾
 
 _Para realizar la correcta exportación del videojuego a Windows se siguen los pasos de la [documentación de Godot Engine](https://docs.godotengine.org/es/stable/getting_started/workflow/export/exporting_for_pc.html)._
 
